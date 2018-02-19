@@ -1,17 +1,45 @@
 <!doctype html>
-<html>
-    <head>
-        <link href="/ui/style.css" rel="stylesheet" />
-    </head>
-    <body>
-        <div class="center">
-            <img src="/ui/madi.png" class="img-medium"/>
-        </div>
-        <br>
-        <div class="center text-big bold">
-            Sample Demo for Communication for Digital Twin using arduino and Nodejs
-        </div>
-        <script type="text/javascript" src="/ui/main.js">
-        </script>
-    </body>
-</html>
+    <html>
+        <head>
+            <link href="/ui/style.css" rel="stylesheet" />
+        </head>
+        <body>
+            <!-- <div class="center">
+                <img src="/ui/madi.png" class="img-medium"/>
+            </div>
+            <br>
+            <div class="center text-big bold">
+                Sample Demo for Communication for Digital Twin using arduino and Nodejs ${currentNumber}
+            </div> -->
+
+            <canvas width="650" height="400" id="canv"></canvas>
+            <script src="/ui/plot.js"></script>
+            <script>
+
+            function prepData(range,amount){
+                var arr= new Array(amount);
+                for(var i=0;i<amount;i++){
+                    arr[i]=(Math.random()-0.5)*range;
+                }
+                return arr;
+            }
+            var ilos= 200;
+            var myp =new MakeDraw();
+            myp.id="canv";
+            myp.plotColor = 'rgba(200,232,53,1)';
+            myp.gridColor = 'rgba(0,0,0,0.5)';
+            myp.fSize=15;
+            myp.enumerateP=0;
+            myp.enumerateH=0;
+            myp.enumerateV=1;
+
+            var data = prepData(10,ilosc);
+
+            myp.data=data;
+            myp.plot();
+            </script>
+
+            <script type="text/javascript" src="/ui/main.js">
+            </script>
+        </body>
+    </html>
