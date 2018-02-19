@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+	<p><strong><h1>Digital Twin</h1></strong></p>
+	<p>
+	<iframe src="./test4.html" style="float:right;width:350px;height:400px;"></iframe>
+	<!-- <img src="img.jpg" alt="Smiley face" style="float:right;width:480px;height:600px;"> -->
+	Test page for digital twin
+	</p>
+	<div id="mygroup">
+	<TABLE BORDER="0" height="300">
+	    <TR>
+	        <TD>Operating profile</TD>
+	        <TD>Status</TD>
+	        <TD>ON/OFF</TD>      	
+	    </TR>
+	    <TR>
+	    <TD></TD>
+	        <TD ALIGN="left">Temperature</TD>
+	        <TD ALIGN="left"><INPUT TYPE="text" SIZE="25" NAME="Temperature">
+	        </TD>	    
+	    </TR>	
+	    <TR>
+	        <TD></TD>
+	        <TD ALIGN="left">RPM</TD>
+	        <TD ALIGN="left"><INPUT TYPE="text" SIZE="25" NAME="rpm"></TD>
+	    </TR>
+	    <TR>
+	    <TD></TD>
+	    <TD ALIGN="left">Current</TD>
+	    <TD ALIGN="left"><INPUT TYPE="text" SIZE="25" NAME="current"></TD>
+	    </TR>
+
+	    <TR></TR>
+
+		    <TR>
+		        <TD>Prognostics Report</TD>      	
+		        <TD ALIGN="left">Tool</TD>
+		        <TD ALIGN="left"><button type="button" class="btn btn-info" data-toggle="collapse" data-target="#toolreport" data-parent="#mygroup">Tool report</button>
+		        </TD>
+		    </TR>
+		    
+		    <TR>
+		        <TD></TD>
+		        <TD ALIGN="left">Bearing</TD>
+		        <TD ALIGN="left"><button type="button" class="btn btn-info" data-toggle="collapse" data-target="#bearingreport" data-parent="#mygroup">Bearing report report</button>
+		       	</TD>
+		    </TR>
+		    <TR><TD><button type="button" class="btn btn-info" data-toggle="collapse" data-target="#econ" data-parent="#mygroup">Economic prediction</button></TD>
+		    </TR>
+		</TABLE>
+	    <div class="accordion-group">
+			<div id="toolreport" class="collapse indent">
+		    <img src="graph1.png">
+		    Tool report statements
+		    </div>
+		    <div id="bearingreport" class="collapse indent">
+		    <img src="graph2.png">
+		    Bearing report statements
+		    </div>
+		    <div id="econ" class="collapse">
+		    <img src="graph3.jpeg">
+		    Econ report
+		    </div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

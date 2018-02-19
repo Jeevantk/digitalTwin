@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>three.js webgl - STL</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<style>
+			body {
+				font-family: Monospace;
+				background-color: #000000;
+				margin: 0px;
+				overflow: hidden;
+			}
+
+			#info {
+				color: #fff;
+				position: absolute;
+				top: 10px;
+				width: 100%;
+				text-align: center;
+				z-index: 100;
+				display:block;
+
+			}
+
+			a { color: skyblue }
+			.button { background:#999; color:#eee; padding:0.2em 0.5em; cursor:pointer }
+			.highlight { background:orange; color:#fff; }
+
+			span {
+				display: inline-block;
+				width: 60px;
+				float: left;
+				text-align: center;
+			}
+			canvas { 
+			      width: 100%; 
+			      height: 100%;
+			      border: 1px solid black;
+			    }
+
+		</style>
+	</head>
+	<body>
+		<script src="three.js"></script>
+		<script src="loaders/STLLoader.js"></script>
+		<script src="js_stl/Detector.js"></script>
+		<script src="js_stl/stats.min.js"></script>
+		<script src="js_stl/stl_script.js"></script>		
+	</body>
+</html>
