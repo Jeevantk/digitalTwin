@@ -3,9 +3,12 @@ var express = require('express');
 var morgan = require('morgan');
 var path = require('path');
 var sqlite3 = require('sqlite3');
-var db= new sqlite3.Database('digitalTwin.db');
+
 var app = express();
+var async = require('async');
 app.use(morgan('combined'));
+
+
 
 
 //function to read from Arduino
@@ -23,14 +26,17 @@ function onOpen(){
 
 var currentValue="";
 var insertId=0;
+
+var db= new sqlite3.Database('digitalTwin.db');
+var stmt = db.prepare("INSERT INTO tempurature VALUES (?,?)");
+
 function initializeDB(){
-	var db= new sqlite3.Database('test.db');
 	db.run('CREATE TABLE IF NOT EXISTS tempurature(ID INTEGER PRIMARY KEY,tempurature TEXT)');
-	var stmt = db.prepare("INSERT INTO tempurature VALUES (?,?)");
 	db.each("SELECT ID FROM tempurature ORDER BY ID DESC LIMIT 1", function(err, row) {  
-		insertId=row.ID;
+		insertId=row.ID+1;
 		console.log("From DB function User id  : "+row.ID);  
 	});
+	
 	
 }
 
@@ -39,19 +45,23 @@ function initializeDB(){
 // });
 var data= initializeDB();
 
+
+
+
 // Because of the stupid asyncronous call this will get excecuted initially
 console.log("User id : "+insertId);
 
 
-setTimeout(function (){
+// setTimeout(function (){
 
-	console.log("Last Try "+insertId);
+// 	console.log("Last Try "+insertId);
   
-  }, 5);
+//   }, 5);
 
 
 
 
+console.log("Control Check");
 
 
 
@@ -61,11 +71,7 @@ myPort.on('data', function (data) {
 	stmt.run(insertId,currentValue);
 	insertId=insertId+1;
  	console.log('Data:',currentValue);
- 	if(insertId==1000)
- 	{
- 		db.close()
- 		process.exit()
- 	}
+
 });
 
 
