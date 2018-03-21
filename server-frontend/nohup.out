@@ -1,0 +1,97 @@
+
+> confusion@1.0.0 start /home/jeevan/BTP/digitalTwin/server-frontend
+> npm run lite
+
+
+> confusion@1.0.0 lite /home/jeevan/BTP/digitalTwin/server-frontend
+> lite-server
+
+Did not detect a `bs-config.json` or `bs-config.js` override file. Using lite-server defaults...
+** browser-sync config **
+{ injectChanges: false,
+  files: [ './**/*.{html,htm,css,js}' ],
+  watchOptions: { ignored: 'node_modules' },
+  server: { baseDir: './', middleware: [ [Function], [Function] ] } }
+[Browsersync] Access URLs:
+ -------------------------------------
+       Local: http://localhost:3000
+    External: http://192.168.1.10:3000
+ -------------------------------------
+          UI: http://localhost:3001
+ UI External: http://192.168.1.10:3001
+ -------------------------------------
+[Browsersync] Serving files from: ./
+[Browsersync] Watching files...
+[90m18.03.21 22:00:06[0m [36m304[0m [35mGET[0m [90m/index.html[0m
+[90m18.03.21 22:00:07[0m [33m404[0m [35mGET[0m [90m/graph1.png[0m
+[90m18.03.21 22:00:07[0m [33m404[0m [35mGET[0m [90m/graph2.png[0m
+[90m18.03.21 22:00:07[0m [33m404[0m [35mGET[0m [90m/graph3.jpeg[0m
+[90m18.03.21 22:00:07[0m [36m304[0m [35mGET[0m [90m/test4.html[0m
+[90m18.03.21 22:00:07[0m [36m304[0m [35mGET[0m [90m/three.js[0m
+[90m18.03.21 22:00:07[0m [36m304[0m [35mGET[0m [90m/loaders/STLLoader.js[0m
+[90m18.03.21 22:00:07[0m [36m304[0m [35mGET[0m [90m/models/btp.stl[0m
+[90m18.03.21 22:00:08[0m [33m404[0m [35mGET[0m [90m/favicon.ico[0m
+
+> confusion@1.0.0 start /home/jeevan/BTP/digitalTwin/server-frontend
+> npm run lite
+
+
+> confusion@1.0.0 lite /home/jeevan/BTP/digitalTwin/server-frontend
+> lite-server
+
+Did not detect a `bs-config.json` or `bs-config.js` override file. Using lite-server defaults...
+** browser-sync config **
+{ injectChanges: false,
+  files: [ './**/*.{html,htm,css,js}' ],
+  watchOptions: { ignored: 'node_modules' },
+  server: { baseDir: './', middleware: [ [Function], [Function] ] } }
+[Browsersync] Access URLs:
+ -------------------------------------
+       Local: http://localhost:3000
+    External: http://192.168.1.10:3000
+ -------------------------------------
+          UI: http://localhost:3001
+ UI External: http://192.168.1.10:3001
+ -------------------------------------
+[Browsersync] Serving files from: ./
+[Browsersync] Watching files...
+[90m18.03.21 22:00:26[0m [36m304[0m [35mGET[0m [90m/index.html[0m
+[90m18.03.21 22:00:26[0m [33m404[0m [35mGET[0m [90m/graph1.png[0m
+[90m18.03.21 22:00:26[0m [33m404[0m [35mGET[0m [90m/graph2.png[0m
+[90m18.03.21 22:00:26[0m [33m404[0m [35mGET[0m [90m/graph3.jpeg[0m
+[90m18.03.21 22:00:26[0m [36m304[0m [35mGET[0m [90m/test4.html[0m
+[90m18.03.21 22:00:26[0m [36m304[0m [35mGET[0m [90m/three.js[0m
+[90m18.03.21 22:00:26[0m [36m304[0m [35mGET[0m [90m/loaders/STLLoader.js[0m
+[90m18.03.21 22:00:26[0m [36m304[0m [35mGET[0m [90m/models/btp.stl[0m
+[90m18.03.21 22:01:10[0m [36m304[0m [35mGET[0m [90m/index.html[0m
+[90m18.03.21 22:01:10[0m [33m404[0m [35mGET[0m [90m/graph1.png[0m
+[90m18.03.21 22:01:10[0m [33m404[0m [35mGET[0m [90m/graph2.png[0m
+[90m18.03.21 22:01:10[0m [33m404[0m [35mGET[0m [90m/graph3.jpeg[0m
+[90m18.03.21 22:01:10[0m [36m304[0m [35mGET[0m [90m/test4.html[0m
+[90m18.03.21 22:01:10[0m [36m304[0m [35mGET[0m [90m/three.js[0m
+[90m18.03.21 22:01:10[0m [36m304[0m [35mGET[0m [90m/loaders/STLLoader.js[0m
+[90m18.03.21 22:01:10[0m [36m304[0m [35mGET[0m [90m/models/btp.stl[0m
+[90m18.03.21 22:01:11[0m [36m304[0m [35mGET[0m [90m/index.html[0m
+[90m18.03.21 22:01:11[0m [33m404[0m [35mGET[0m [90m/graph1.png[0m
+[90m18.03.21 22:01:11[0m [33m404[0m [35mGET[0m [90m/graph2.png[0m
+[90m18.03.21 22:01:11[0m [33m404[0m [35mGET[0m [90m/graph3.jpeg[0m
+[90m18.03.21 22:01:11[0m [36m304[0m [35mGET[0m [90m/test4.html[0m
+[90m18.03.21 22:01:11[0m [36m304[0m [35mGET[0m [90m/three.js[0m
+[90m18.03.21 22:01:11[0m [36m304[0m [35mGET[0m [90m/loaders/STLLoader.js[0m
+[90m18.03.21 22:01:11[0m [36m304[0m [35mGET[0m [90m/models/btp.stl[0m
+[90m18.03.21 22:01:12[0m [36m304[0m [35mGET[0m [90m/index.html[0m
+[90m18.03.21 22:01:12[0m [33m404[0m [35mGET[0m [90m/graph1.png[0m
+[90m18.03.21 22:01:12[0m [33m404[0m [35mGET[0m [90m/graph2.png[0m
+[90m18.03.21 22:01:12[0m [33m404[0m [35mGET[0m [90m/graph3.jpeg[0m
+[90m18.03.21 22:01:12[0m [36m304[0m [35mGET[0m [90m/test4.html[0m
+[90m18.03.21 22:01:12[0m [36m304[0m [35mGET[0m [90m/three.js[0m
+[90m18.03.21 22:01:12[0m [36m304[0m [35mGET[0m [90m/loaders/STLLoader.js[0m
+[90m18.03.21 22:01:13[0m [36m304[0m [35mGET[0m [90m/models/btp.stl[0m
+[90m18.03.21 22:01:14[0m [36m304[0m [35mGET[0m [90m/index.html[0m
+[90m18.03.21 22:01:14[0m [33m404[0m [35mGET[0m [90m/graph1.png[0m
+[90m18.03.21 22:01:14[0m [33m404[0m [35mGET[0m [90m/graph2.png[0m
+[90m18.03.21 22:01:14[0m [33m404[0m [35mGET[0m [90m/graph3.jpeg[0m
+[90m18.03.21 22:01:14[0m [36m304[0m [35mGET[0m [90m/test4.html[0m
+[90m18.03.21 22:01:14[0m [36m304[0m [35mGET[0m [90m/three.js[0m
+[90m18.03.21 22:01:14[0m [36m304[0m [35mGET[0m [90m/loaders/STLLoader.js[0m
+[90m18.03.21 22:01:14[0m [36m304[0m [35mGET[0m [90m/models/btp.stl[0m
