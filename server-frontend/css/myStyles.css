@@ -1,0 +1,133 @@
+.row-header{
+	margin: 0px auto;
+	padding: 0px auto;
+}
+
+.row-content{
+	margin: 0px auto;
+	padding: 50px 0px 50px 0px;
+	border-bottom: 1px ridge;
+	min-height: 400px;
+}
+.row-footer{
+	background-color: #AfAfAf;
+	margin: 0px auto;
+	padding: 20px 0px 20px 0px;
+}
+.jumbotron{
+	padding: 70px 30px 70px 30px;
+	margin: 0px auto;
+	background: #7986CB;
+	color: floralwhite;
+}
+address{
+	font-size: 80%;
+	margin: 0px;
+	color: #0f0f0f;
+}
+body{
+	align: center;
+	padding: 50px 0px 0px 0px;
+	z-index: 0;
+}
+.navbar-inverse{
+	background: #303F9F;
+}
+
+.navbar-inverse .navbar-nav > .active >a,
+.navbar-inverse .navbar-nav >.active >a:hover,
+.navbar-inverse .navbar-nav >.active >a:focus{
+	color: #fff;
+	background: #1A237E;
+}
+.navbar-inverse .navbar-nav > .open >a,
+.navbar-inverse .navbar-nav >.open >a:hover,
+.navbar-inverse .navbar-nav >.open >a:focus{
+	color: #fff;
+	background: #1A237E;
+}
+.navbar-inverse .navbar-nav .open .dropdown-menu> li> a,
+.navbar-inverse .navbar-nav .open .dropdown-menu{
+	background-color: #303F9F;
+	color: #eeeeee;
+}
+.navbar-inverse .navbar-nav .open .dropdown-menu> li> a{
+	color: #000000;
+}
+
+.tab-content{
+	border-left: 1px solid #ddd;
+	border-right: 1px solid #ddd;
+	border-bottom: 1px solid #ddd;
+	padding: 10px; 
+}
+
+.affix{
+	top: 100px;
+}
+
+.carousel{
+	background: #1A237E;
+}
+
+.carousel .item{
+	height: 300px;
+}
+
+.item img{
+	position: absolute;
+	top: 0;
+	left: 0;
+	min-height: 300px;
+}
+
+#carouselButtons{
+	right: 0px;
+	position: absolute;
+	bottom: 0px;
+}
+
+.fa-facebook {
+    background:#3b5998
+} 
+.fa-linkedin {
+    background:#007bb6
+}
+.fa-twitter {
+    background:#00aced
+}
+.fa-google-plus {
+    background:#dd4b39
+}
+.fa-youtube{
+    background: #bb0000;
+    color: #FFFFFF;
+}
+
+.circle{
+    color: #fff;
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    font-size: 25px;
+    text-align: center;
+    padding-top: 15%;
+
+}
+
+.row-footer .row .navbar-nav >a:hover{
+    -moz-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+    -moz-transition: all 0.5s ease-in-out;
+    -webkit-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    -ms-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+
+}
+
+.row-footer .row .navbar-nav .btn{
+    padding: 0px;
+}
