@@ -5,7 +5,7 @@
     <meta charset= "utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE-edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Ristorante Con Fusion</title>
+    <title>DIgital Twin</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="css/font-awesome.min.css">
@@ -68,9 +68,43 @@
             </div>
         </div>
     </div>
+    <div>
+        <iframe src="./test4.html" style="float:right;width:350px;height:350px;"></iframe>
+    </div>
+
+    <div class="tab">
+      <button class="tablinks actve" onclick="openTab(event, 'Tempurature')">Tempurature</button>
+      <button class="tablinks" onclick="openTab(event, 'Current')">Current</button>
+      <button class="tablinks" onclick="openTab(event, 'Vibration')">Vibration</button>
+      <button class="tablinks" onclick="openTab(event, 'Force')">Force</button>
+    </div>
 
 
-    
+    <!-- Tab content -->
+    <div id="Tempurature" class="tabcontent">
+      <h3>Tempurature</h3>
+      <p>Will be showing tempurature information</p>
+    </div>
+
+    <div id="Current" class="tabcontent">
+      <h3>Current</h3>
+      <p>Will be showing current Information</p> 
+    </div>
+
+    <div id="Vibration" class="tabcontent">
+      <h3>Vibration</h3>
+      <p>Will be showing Vibration Information</p>
+    </div>
+
+    <div id="Force" class="tabcontent">
+      <h3>Force</h3>
+      <p>Will be showing Force Information</p>
+    </div>
+
+
+
+
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>  
     <script>
@@ -86,6 +120,21 @@
                 $("#loginModal").modal('hide');
             });
         });
+
+        document.getElementsByClassName('tablinks')[0].click()
+        function openTab(evt, cityName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(cityName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
     </script>
 </body>
 
