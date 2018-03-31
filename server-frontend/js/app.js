@@ -1,110 +1,89 @@
-'use strict';
+(function() {
 
-angular.module('confusionApp',[])
+    var serverUrl = "/",
+        members = [],
+        channel,tempuratureChartRef;
 
-    .controller('MenuController', ['$scope', function($scope){
-            $scope.tab = 1;
-            $scope.filtText = '';
+    function showEle(elementId){
+      document.getElementById(elementId).style.display = 'flex';
+    }
 
-            $scope.showDetails = false;
+    function hideEle(elementId){
+      document.getElementById(elementId).style.display = 'none';
+    }
 
-            $scope.dishes=[{
-                    name: 'Uthapizza',
-                    image: 'img/uthapizza.png',
-                    category: 'mains' ,
-                    label: 'hot',
-                    price: '4.99',
-                    description: 'A unique combinantion of indian Uthappam (pancake) and Italian pizza, topped with Cerignola olives, ripe vine cherry tomatoes, Vidalia onion, Guntur Chillies and Buffalo paneer.',
-                    comments: ''
-                },
-                {
-                    name: 'Zucchipakoda',
-                    image: 'img/zucchipakoda.png',
-                    category: 'appetizer',
-                    label: '',
-                    price: '1.99',
-                    description: 'Deep fried Zucchini coated with mildly spiced Chickpea flour batter accompanied with a sweet-tangy tamarind sauce',
-                    comment: ''  
-                },
-                {
-                    name: 'Vadonut',
-                    image: 'img/vadonut.png',
-                    category: 'appetizer',
-                    label: ' New',
-                    price: '1.99',
-                    description: 'A quintessential ConFusion experience, is it a vada or is it a donut?',
-                    comment: ''
-                },
-                {
-                    name: 'ElaiCheese Cake',
-                    image: 'img/elaicheesecake.png',
-                    category: 'dessert',
-                    label: '',
-                    price: '2.99',
-                    description: 'A delectable, semi-sweet New York style Cheese cake , with  Graham cracker crust and spiced with  Indian Cardamoms',
-                    comment:''
-                }];
+    function ajax(url, method, payload, successCallback){
+      var xhr = new XMLHttpRequest();
+      xhr.open(method, url, true);
+      xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState != 4 || xhr.status != 200) return;
+        successCallback(xhr.responseText);
+      };
+      xhr.send(JSON.stringify(payload));
+    }
 
-            
 
-            $scope.select = function(setTab){
-                $scope.tab = setTab;
+   function renderWeatherChart(tempuratureData) {
+      var ctx = document.getElementById("tempuratureChart").getContext("2d");
+      var options = { };
+      tempuratureChartRef = new Chart(ctx, {
+        type: "line",
+        data: tempuratureData,
+        options: options
+      });
+  }
 
-                if(setTab===2){
-                    $scope.filtText = "appetizer";
-                }
-                else if(setTab===3){
-                    $scope.filtText = "mains";
-                }
-                else if(setTab === 4){
-                    $scope.filtText = "dessert";
-                }
-                else{
-                    $scope.filtText = "";
-                }
-            };
-
-            $scope.isSelected = function(checkTab){
-                return($scope.tab === checkTab);
-            };
-
-            $scope.toggleDetails = function(){
-                $scope.showDetails = !$scope.showDetails;
+        var chartConfig = {
+        labels: [],
+        datasets: [
+            {
+                label: "Tempurature Readings",
+                fill: false,
+                lineTension: 0.1,
+                backgroundColor: "rgba(75,192,192,0.4)",
+                borderColor: "rgba(75,192,192,1)",
+                borderCapStyle: 'butt',
+                borderDash: [],
+                borderDashOffset: 0.0,
+                borderJoinStyle: 'miter',
+                pointBorderColor: "rgba(75,192,192,1)",
+                pointBackgroundColor: "#fff",
+                pointBorderWidth: 1,
+                pointHoverRadius: 5,
+                pointHoverBackgroundColor: "rgba(75,192,192,1)",
+                pointHoverBorderColor: "rgba(220,220,220,1)",
+                pointHoverBorderWidth: 2,
+                pointRadius: 1,
+                pointHitRadius: 10,
+                data: [],
+                spanGaps: false,
             }
-    }])
+        ]
+    };
+
+  ajax("http://localhost:3000/tempurature/get", "GET",{}, onFetchTempSuccess);
+
+  function onFetchTempSuccess(response){
+    hideEle("loader");
+    var respData = JSON.parse(response);
+    chartConfig.labels = respData.dataPoints.map(dataPoint => dataPoint.id);
+    chartConfig.datasets[0].data = respData.dataPoints.map(dataPoint => dataPoint.temperature);
+    renderWeatherChart(chartConfig)
+  }
 
 
-    .controller('ContactController',['$scope', function($scope){
 
-        $scope.feedback = {mychannel: "", firstname: "", lastname: "", agree: false, email: ""};
+/* TEMP CODE FOR TESTING */
+  // var dummyTime = 1500;
+  // setInterval(function(){
+  //   dummyTime = dummyTime + 10;
+  //   ajax("/addTemperature?temperature="+ getRandomInt(10,20) +"&time="+dummyTime,"GET",{},() => {});
+  // }, 1000);
 
-        var channels = [{value:"tel", label:"Tel."},{value:"Email", label:"Email"}];
+  // function getRandomInt(min, max) {
+  //     return Math.floor(Math.random() * (max - min + 1)) + min;
+  // }
+/* TEMP CODE ENDS */
 
-        $scope.channels = channels;
-        $scope.invalidChannelSelection = false;
-
-    }])
-
-    .controller('FeedbackController',['$scope', function($scope){
-
-        $scope.sendFeedback = function(){
-            console.log($scope.feedback);
-
-            if($scope.feedback.agree && 
-                ($scope.feedback.mychannel == "")){
-                $scope.invalidChannelSelection = true;
-                console.log('incorrect');
-            }
-            else{
-                $scope.invalidChannelSelection = false;
-                $scope.feedback = {
-                    mychannel:"", firstname:"",
-                    lastname:"", agree:false, email:""};
-                $scope.feedback.mychannel="";
-                $scope.feedbackForm.$setPristine();
-                console.log($scope.feedback);
-            }
-        };
-
-    }])
-;
+})();

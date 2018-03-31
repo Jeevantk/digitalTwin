@@ -229,7 +229,7 @@ body{
     text-decoration: none;
 }
 
-#weatherChart{
+#tempuratureChart{
     height: 80% !important;
     width: 95% !important;
     margin: 0 auto;

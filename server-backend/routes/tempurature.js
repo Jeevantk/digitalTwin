@@ -35,7 +35,7 @@ var temperatureData = {
   }
 
 router.get('/get', function(req, res, next) {
-  res.send(londonTempData);
+  res.send(temperatureData);
 });
 
 
