@@ -64,7 +64,7 @@
         ]
     };
 
-  ajax("http://localhost:3000/tempurature/get", "GET",{}, onFetchTempSuccess);
+  ajax("http://34.212.83.92:3000/tempurature/get", "GET",{}, onFetchTempSuccess);
 
   function onFetchTempSuccess(response){
     hideEle("loader");
