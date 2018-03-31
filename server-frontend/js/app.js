@@ -24,7 +24,9 @@
     }
 
 
-   function renderWeatherChart(tempuratureData) {
+  // Specifi Code For Rendering the tempurature Data
+
+   function renderTempChart(tempuratureData) {
       var ctx = document.getElementById("tempuratureChart").getContext("2d");
       var options = { };
       tempuratureChartRef = new Chart(ctx, {
@@ -69,21 +71,10 @@
     var respData = JSON.parse(response);
     chartConfig.labels = respData.dataPoints.map(dataPoint => dataPoint.id);
     chartConfig.datasets[0].data = respData.dataPoints.map(dataPoint => dataPoint.temperature);
-    renderWeatherChart(chartConfig)
+    renderTempChart(chartConfig)
   }
 
 
 
-/* TEMP CODE FOR TESTING */
-  // var dummyTime = 1500;
-  // setInterval(function(){
-  //   dummyTime = dummyTime + 10;
-  //   ajax("/addTemperature?temperature="+ getRandomInt(10,20) +"&time="+dummyTime,"GET",{},() => {});
-  // }, 1000);
-
-  // function getRandomInt(min, max) {
-  //     return Math.floor(Math.random() * (max - min + 1)) + min;
-  // }
-/* TEMP CODE ENDS */
 
 })();
