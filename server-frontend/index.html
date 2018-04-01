@@ -1,76 +1,169 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <meta charset= "utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE-edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>DIgital Twin</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/myStyles.css">
 </head>
-<body>
-<div class="container">
-	<p><strong><h1>Digital Twin</h1></strong></p>
-	<p>
-	<iframe src="./test4.html" style="float:right;width:350px;height:350px;"></iframe>
-	<!-- <img src="img.jpg" alt="Smiley face" style="float:right;width:480px;height:600px;"> -->
-	Test page for digital twin
-	</p>
-	<div id="mygroup">
-	<TABLE BORDER="0" height="300">
-	    <TR>
-	        <TD>Operating profile</TD>
-	        <TD>Status</TD>
-	        <TD>ON/OFF</TD>      	
-	    </TR>
-	    <TR>
-	    <TD></TD>
-	        <TD ALIGN="left">Temperature</TD>
-	        <TD ALIGN="left"><INPUT TYPE="text" SIZE="25" NAME="Temperature">
-	        </TD>	    
-	    </TR>	
-	    <TR>
-	        <TD></TD>
-	        <TD ALIGN="left">RPM</TD>
-	        <TD ALIGN="left"><INPUT TYPE="text" SIZE="25" NAME="rpm"></TD>
-	    </TR>
-	    <TR>
-	    <TD></TD>
-	    <TD ALIGN="left">Current</TD>
-	    <TD ALIGN="left"><INPUT TYPE="text" SIZE="25" NAME="current"></TD>
-	    </TR>
 
-	    <TR></TR>
+<body id="index">
+    <nav id="items" class="navbar navbar-inverse navbar-fixed-top" role= "navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle Navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="index.html" class="navbar-brand"><img src="img/logo.png" height="30" width="41"></a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul id="navigate" class="nav navbar-nav">
+                    <li class="active"><a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li><!--
+         -->        <li><a href="simulation.html"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> Simulation</a></li><!--
+         -->        <li><a href="reports.html"> 
+                        <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Reports</a>
+                    </li>
+                    <li><a href="contactus.html"><i class="fa fa-envelope-o"></i> Contact</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a id="loginclick"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div id="loginModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" id="loginclose">&times;</button>
+                    <h4 class="modal-title">Login</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-inline">
+                        <div class="form-group">
+                            <label class="sr-only" for="email">Email Address </label>
+                            <input type="text" class="form-control input-sm" placeholder="Email">
+                        </div>
+                        <div class="form-group">
+                            <label class="sr-only" for="password">Password </label>
+                            <input type="password" class="form-control input-sm" placeholder="Password">
+                        </div>
+                        <div class="checkbox">
+                            <label>    
+                                <input type="checkbox"> Remember Me</span>
+                            </label>
+                        </div>
+                        <button type="submit" class="btn btn-info btn-sm">Sign in</button>
+                        <button type="button" class="btn btn-default btn-sm" id="logincancel">Cancel</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <iframe src="./test4.html" style="float:right;width:350px;height:350px;"></iframe>
+    </div>
 
-		    <TR>
-		        <TD>Prognostics Report</TD>      	
-		        <TD ALIGN="left">Tool</TD>
-		        <TD ALIGN="left"><button type="button" class="btn btn-info" data-toggle="collapse" data-target="#toolreport" data-parent="#mygroup">Tool report</button>
-		        </TD>
-		    </TR>
-		    
-		    <TR>
-		        <TD></TD>
-		        <TD ALIGN="left">Bearing</TD>
-		        <TD ALIGN="left"><button type="button" class="btn btn-info" data-toggle="collapse" data-target="#bearingreport" data-parent="#mygroup">Bearing report report</button>
-		       	</TD>
-		    </TR>
-		    <TR><TD><button type="button" class="btn btn-info" data-toggle="collapse" data-target="#econ" data-parent="#mygroup">Economic prediction</button></TD>
-		    </TR>
-	</TABLE>
-	    <div class="accordion-group">
-			<div id="toolreport" class="collapse indent">
-		    <img src="graph1.png">
-		    Tool report statements
-		    </div>
-		    <div id="bearingreport" class="collapse indent">
-		    <img src="graph2.png">
-		    Bearing report statements
-		    </div>
-		    <div id="econ" class="collapse">
-		    <img src="graph3.jpeg">
-		    Econ report
-		    </div>
-		</div>
-	</div>
-</div>
+    <div class="tab">
+      <button class="tablinks actve" onclick="openTab(event, 'Tempurature')">Tempurature</button>
+      <button class="tablinks" onclick="openTab(event, 'Current')">Current</button>
+      <button class="tablinks" onclick="openTab(event, 'Vibration')">Vibration</button>
+      <button class="tablinks" onclick="openTab(event, 'Force')">Force</button>
+    </div>
+
+
+    <!-- Tab content -->
+    <div id="Tempurature" class="tabcontent">
+      <h3>Tempurature</h3>
+      <p>Will be showing tempurature information Graph</p>
+      <p>Average Value :</p>
+      <p>Variance : </p>
+
+        <section>
+            <div id="loader" class="loader"></div>
+            <canvas id="tempuratureChart" ></canvas>
+        </section>
+    </div>
+
+    <div id="Current" class="tabcontent">
+      <h3>Current</h3>
+      <p>Will be showing current Information Graph</p> 
+      <p>Average Value :</p>
+      <p>Variance : </p>
+
+
+    </div>
+
+    <div id="Vibration" class="tabcontent">
+      <h3>Vibration</h3>
+      <p>Will be showing Vibration Information Graph</p>
+      <p>Average Value :</p>
+      <p>Variance : </p>
+    </div>
+
+    <div id="Force" class="tabcontent">
+      <h3>Force</h3>
+      <p>Will be showing Force Information Graph</p>
+      <p>Average Value :</p>
+      <p>Variance : </p>
+    </div>
+
+    <div>
+        <h2>Health Condition</h2>
+        <p>To be filled with random data</p>
+    </div>
+
+    <div>
+        <h2>Economic Projections</h2>
+        <p> To be filled with bullshit data</p>
+    </div>
+
+
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>  
+    <script>
+        $(document).ready(function(){
+            
+            $("#loginclick").click(function(){
+                $("#loginModal").modal('show');
+            });
+            $("#loginclose").click(function(){
+                $("#loginModal").modal('hide');
+            });
+            $("#logincancel").click(function(){
+                $("#loginModal").modal('hide');
+            });
+        });
+
+        document.getElementsByClassName('tablinks')[0].click()
+        function openTab(evt, sensorTab) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(sensorTab).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.bundle.min.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
 </body>
+
 </html>
