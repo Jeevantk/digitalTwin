@@ -38,5 +38,22 @@ router.get('/get', function(req, res, next) {
   res.send(temperatureData);
 });
 
+router.get('/add',function(req,res,next){
+  var temp=parseInt(req.query.temperature);
+  if(temp && !isNaN(temp)){
+    var newDataPoint = {
+      id: Object.keys(temperatureData.dataPoints).length +1,
+      temperature:temp
+    };
+
+    console.log(newDataPoint)
+    temperatureData.dataPoints.push(newDataPoint);
+    res.send({sucess:true, newDataPoint});
+  }
+  else{
+    res.send({sucess:false,errorMessage:"Invalid Query Parameters"});
+  }
+});
+
 
 module.exports = router;
