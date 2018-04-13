@@ -1,8 +1,9 @@
 function MainViewModel(data) {
   var self = this;
-  var serverIp = 'http://34.212.83.92'
-  var localIp  = 'localhost'
-  var socket = io.connect(serverIp+':8070');
+  var serverIp = 'http://34.212.83.92';
+  var localIp  = 'localhost';
+  // var socket = io.connect(localhost+':8070');
+  var socket = io.connect('http://127.0.0.1:8070');
 
   self.calculateAndDisplayMean = function(){
     var average = arr => arr.reduce( ( p, c ) => p + c, 0 ) / arr.length;
@@ -11,14 +12,14 @@ function MainViewModel(data) {
   };
   
   self.lineChartData = ko.observable({
-    labels : ["0","1","2","3","4","5","6"],
+    labels : ["0","1","2","3","4","5","6","7","8","9"],
     datasets : [
       {
         fillColor : "rgba(151,187,205,0.5)",
         strokeColor : "rgba(151,187,205,1)",
         pointColor : "rgba(151,187,205,1)",
         pointStrokeColor : "#fff",
-        data : [65,59,90,81,56,55,40]
+        data : [65,59,90,81,56,55,40,28,76,40]
       }
     ]
   });
