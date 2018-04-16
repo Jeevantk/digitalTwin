@@ -3,8 +3,8 @@ function MainViewModel(data) {
   var serverIp = 'http://34.212.83.92';
   var localIp  = 'localhost';
   // var socket = io.connect(localhost+':8070');
-  var socket = io.connect('http://127.0.0.1:8070');
-
+  // var socket = io.connect('http://127.0.0.1:3000');
+  var socket = io.connect('http://34.212.83.92:6001');
   self.calculateAndDisplayMean = function(){
     var average = arr => arr.reduce( ( p, c ) => p + c, 0 ) / arr.length;
     var averageValue=average(self.lineChartData().datasets[0].data);
@@ -24,7 +24,7 @@ function MainViewModel(data) {
     ]
   });
   
-  socket.on('pushdata', function (data) {
+  socket.on('newTemp', function (data) {
     self.lineChartData().datasets[0].data.shift();
     self.lineChartData().datasets[0].data.push(data);
     
