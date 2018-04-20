@@ -26,8 +26,8 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul id="navigate" class="nav navbar-nav">
-                    <li class="active"><a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li><!--
-         -->        <li><a href="control.html"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> Control</a></li><!--
+                    <li><a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li><!--
+         -->        <li class="active"><a href="control.html"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> Control</a></li><!--
          -->        <li><a href="reports.html"> 
                         <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Reports</a>
                     </li>
@@ -68,76 +68,20 @@
             </div>
         </div>
     </div>
-    <div>
+    <!-- <div>
         <iframe src="./test4.html" style="float:right;width:350px;height:350px;"></iframe>
-    </div>
+    </div> -->
 
-    <div class="tab">
-      <button class="tablinks actve" onclick="openTab(event, 'Tempurature')">Tempurature</button>
-      <button class="tablinks" onclick="openTab(event, 'Current')">Current</button>
-      <button class="tablinks" onclick="openTab(event, 'Vibration')">Vibration</button>
-      <button class="tablinks" onclick="openTab(event, 'Force')">Force</button>
-    </div>
-
-
-    <!-- Tab content -->
-    <div id="Tempurature" class="tabcontent">
-
-        
-    	<div class="pure-u-1 left" >
-			<div>
-				<canvas id="canvas" height="450" width="600"></canvas>
-			</div>
-			
-		</div>
-        <div id="tempAvg">Average Tempurature Value</div>
-        <br></br>
-        <br></br>
-        <br></br>
-        <div id="tempMax">Maximum Tempurature</div>
-        <br></br>
-        <br></br>
-        <br></br>
-        <div id="tempMin">Minimum Tempurature </div>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        
-    </div>
-
-    <div id="Current" class="tabcontent">
-      <h3>Current</h3>
-      <p>Will be showing current Information Graph</p> 
-      <p>Average Value :</p>
-      <p>Variance : </p>
-
-
-    </div>
-
-    <div id="Vibration" class="tabcontent">
-      <h3>Vibration</h3>
-      <p>Will be showing Vibration Information Graph</p>
-      <p>Average Value :</p>
-      <p>Variance : </p>
-    </div>
-
-    <div id="Force" class="tabcontent">
-      <h3>Force</h3>
-      <p>Will be showing Force Information Graph</p>
-      <p>Average Value :</p>
-      <p>Variance : </p>
-    </div>
-
-    <div>
-        <h2>Health Condition</h2>
-        <p>To be filled with random data</p>
-    </div>
-
-    <div>
-        <h2>Economic Projections</h2>
-        <p> To be filled with Extra random data</p>
-    </div>
+    <br></br>
+    
+    <br></br>
+    <form name="controlParams" class="inputForm" >
+        X Motion : <input type="number" name="xValue" value=5><br>
+        Y Motion : <input type="number" name="yValue" value=5><br>
+        Z Motion : <input type="number" name="zValue" value=5><br>
+        Feed Rate: <input type="number" name="feedRate" value=70><br><br>
+        <input type="button" onclick="inputForm()" value="Submit">
+    </form>
 
 
 

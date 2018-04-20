@@ -238,3 +238,6 @@ body{
 .left{
     float:left;
 }
+.inputForm{
+    margin:30px;
+}
