@@ -4,6 +4,6 @@ void setup() {
 
 int i=0;
 void loop() {
-  Serial.println(i++);
-  delay(100); // poll every 100ms
+  Serial.print(i++);
+  delay(1000); // poll every 100ms
 }
