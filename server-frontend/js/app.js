@@ -49,13 +49,15 @@ function MainViewModel(data) {
   
 }
 
-var vm = new MainViewModel();
-ko.applyBindings(vm);
-vm.initLine();
+// var vm = new MainViewModel();
+// ko.applyBindings(vm);
+// vm.initLine();
 
 // var socket = io.connect('http://34.212.83.92:6001');
 
 // var socket = io.connect('http://localhost:6001')
+var endpointLocal="http://localhost:3330/state/get";
+var endpointCloud="http://34.212.83.92:3330/state/get";
 
 function inputForm() {
   
@@ -66,9 +68,28 @@ function inputForm() {
   var socket = io.connect('http://34.212.83.92:6001');
   console.log(controlObject);
   socket.emit('newControl', controlObject);
+  ajax(endpointLocal, "GET",{}, onFetchStateSuccess);
   
 }
 
+function ajax(url, method, payload, successCallback){
+  var xhr = new XMLHttpRequest();
+  xhr.open(method, url, true);
+  xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+  xhr.onreadystatechange = function () {
+  if (xhr.readyState != 4 || xhr.status != 200) return;
+    successCallback(xhr.responseText);
+  };
+  xhr.send(JSON.stringify(payload));
+}
+
+function onFetchStateSuccess(response){
+  var respData = JSON.parse(response);
+  var stateString="X Position = " + respData.xValue + " Y Position = "+respData.yValue+"    Z Position = "+respData.zValue;
+  document.getElementById("currentState").innerHTML = stateString;
+}
+
+ajax(endpointLocal, "GET",{}, onFetchStateSuccess);
 
 
 
