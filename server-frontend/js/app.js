@@ -49,9 +49,9 @@ function MainViewModel(data) {
   
 }
 
-// var vm = new MainViewModel();
-// ko.applyBindings(vm);
-// vm.initLine();
+var vm = new MainViewModel();
+ko.applyBindings(vm);
+vm.initLine();
 
 // var socket = io.connect('http://34.212.83.92:6001');
 
