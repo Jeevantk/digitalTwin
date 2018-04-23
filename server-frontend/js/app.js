@@ -68,7 +68,7 @@ function inputForm() {
   var socket = io.connect('http://34.212.83.92:6001');
   console.log(controlObject);
   socket.emit('newControl', controlObject);
-  ajax(endpointLocal, "GET",{}, onFetchStateSuccess);
+  ajax(endpointCloud, "GET",{}, onFetchStateSuccess);
   
 }
 
@@ -89,7 +89,7 @@ function onFetchStateSuccess(response){
   document.getElementById("currentState").innerHTML = stateString;
 }
 
-ajax(endpointLocal, "GET",{}, onFetchStateSuccess);
+ajax(endpointCloud, "GET",{}, onFetchStateSuccess);
 
 
 
