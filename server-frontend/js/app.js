@@ -67,8 +67,10 @@ function inputForm() {
             "feedRate":document.controlParams.feedRate.value};
   var socket = io.connect('http://34.212.83.92:6001');
   console.log(controlObject);
-  socket.emit('newControl', controlObject);
-  ajax(endpointCloud, "GET",{}, onFetchStateSuccess);
+  socket.emit('newControl', controlObject,function(req,res){
+    ajax(endpointCloud, "GET",{}, onFetchStateSuccess);
+  });
+  
   
 }
 
@@ -86,10 +88,12 @@ function ajax(url, method, payload, successCallback){
 function onFetchStateSuccess(response){
   var respData = JSON.parse(response);
   var stateString="X Position = " + respData.xValue + " Y Position = "+respData.yValue+"    Z Position = "+respData.zValue;
+  console.log(stateString);
   document.getElementById("currentState").innerHTML = stateString;
 }
 
 ajax(endpointCloud, "GET",{}, onFetchStateSuccess);
+
 
 
 
