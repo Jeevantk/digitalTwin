@@ -1,0 +1,59 @@
+
+> confusion@1.0.0 start /home/jeevan/BTP/digitalTwin/server-frontend
+> npm run lite
+
+
+> confusion@1.0.0 lite /home/jeevan/BTP/digitalTwin/server-frontend
+> lite-server
+
+Did not detect a `bs-config.json` or `bs-config.js` override file. Using lite-server defaults...
+** browser-sync config **
+{ injectChanges: false,
+  files: [ './**/*.{html,htm,css,js}' ],
+  watchOptions: { ignored: 'node_modules' },
+  server: { baseDir: './', middleware: [ [Function], [Function] ] } }
+[Browsersync] Access URLs:
+ ---------------------------------------
+       Local: http://localhost:3000
+    External: http://192.168.43.154:3000
+ ---------------------------------------
+          UI: http://localhost:3001
+ UI External: http://192.168.43.154:3001
+ ---------------------------------------
+[Browsersync] Serving files from: ./
+[Browsersync] Watching files...
+[90m18.04.24 14:49:31[0m [32m200[0m [35mGET[0m [90m/index.html[0m
+[90m18.04.24 14:49:31[0m [36m304[0m [35mGET[0m [90m/css/bootstrap.min.css[0m
+[90m18.04.24 14:49:32[0m [36m304[0m [35mGET[0m [90m/css/bootstrap-theme.min.css[0m
+[90m18.04.24 14:49:32[0m [36m304[0m [35mGET[0m [90m/css/font-awesome.min.css[0m
+[90m18.04.24 14:49:32[0m [36m304[0m [35mGET[0m [90m/css/myStyles.css[0m
+[90m18.04.24 14:49:32[0m [36m304[0m [35mGET[0m [90m/img/logo.png[0m
+[90m18.04.24 14:49:32[0m [36m304[0m [35mGET[0m [90m/js/bootstrap.min.js[0m
+[90m18.04.24 14:49:32[0m [36m304[0m [35mGET[0m [90m/js/app.js[0m
+[90m18.04.24 14:49:32[0m [36m304[0m [35mGET[0m [90m/test4.html[0m
+[90m18.04.24 14:49:32[0m [36m304[0m [35mGET[0m [90m/fonts/glyphicons-halflings-regular.woff2[0m
+[90m18.04.24 14:49:32[0m [36m304[0m [35mGET[0m [90m/fonts/fontawesome-webfont.woff2[0m
+[90m18.04.24 14:49:32[0m [36m304[0m [35mGET[0m [90m/three.js[0m
+[90m18.04.24 14:49:32[0m [36m304[0m [35mGET[0m [90m/loaders/STLLoader.js[0m
+[90m18.04.24 14:49:32[0m [36m304[0m [35mGET[0m [90m/render.js[0m
+[90m18.04.24 14:49:32[0m [36m304[0m [35mGET[0m [90m/models/btp.stl[0m
+[90m18.04.24 14:49:35[0m [36m304[0m [35mGET[0m [90m/control.html[0m
+[90m18.04.24 14:49:35[0m [36m304[0m [35mGET[0m [90m/css/bootstrap.min.css[0m
+[90m18.04.24 14:49:35[0m [36m304[0m [35mGET[0m [90m/css/bootstrap-theme.min.css[0m
+[90m18.04.24 14:49:35[0m [36m304[0m [35mGET[0m [90m/css/font-awesome.min.css[0m
+[90m18.04.24 14:49:35[0m [36m304[0m [35mGET[0m [90m/css/myStyles.css[0m
+[90m18.04.24 14:49:35[0m [36m304[0m [35mGET[0m [90m/js/bootstrap.min.js[0m
+[90m18.04.24 14:49:35[0m [36m304[0m [35mGET[0m [90m/js/app.js[0m
+[90m18.04.24 14:49:36[0m [36m304[0m [35mGET[0m [90m/img/logo.png[0m
+[90m18.04.24 14:49:36[0m [36m304[0m [35mGET[0m [90m/fonts/glyphicons-halflings-regular.woff2[0m
+[90m18.04.24 14:49:36[0m [36m304[0m [35mGET[0m [90m/fonts/fontawesome-webfont.woff2[0m
+[90m18.04.24 14:51:14[0m [36m304[0m [35mGET[0m [90m/control.html[0m
+[90m18.04.24 14:51:14[0m [36m304[0m [35mGET[0m [90m/css/bootstrap.min.css[0m
+[90m18.04.24 14:51:14[0m [36m304[0m [35mGET[0m [90m/css/bootstrap-theme.min.css[0m
+[90m18.04.24 14:51:14[0m [36m304[0m [35mGET[0m [90m/css/font-awesome.min.css[0m
+[90m18.04.24 14:51:14[0m [36m304[0m [35mGET[0m [90m/css/myStyles.css[0m
+[90m18.04.24 14:51:14[0m [36m304[0m [35mGET[0m [90m/js/bootstrap.min.js[0m
+[90m18.04.24 14:51:14[0m [36m304[0m [35mGET[0m [90m/js/app.js[0m
+[90m18.04.24 14:51:14[0m [36m304[0m [35mGET[0m [90m/img/logo.png[0m
+[90m18.04.24 14:51:14[0m [36m304[0m [35mGET[0m [90m/fonts/glyphicons-halflings-regular.woff2[0m
+[90m18.04.24 14:51:14[0m [36m304[0m [35mGET[0m [90m/fonts/fontawesome-webfont.woff2[0m

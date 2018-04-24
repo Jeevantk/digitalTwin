@@ -66,10 +66,12 @@ function inputForm() {
   var socket = io.connect('http://34.212.83.92:6001');
   console.log(controlObject);
   socket.emit('newControl', controlObject);
-  ajax(endpointCloud, "GET",{}, onFetchStateSuccess);
-  
-  
+
+  socket.on ('messageSuccess', function (data) {
+    ajax(endpointCloud, "GET",{}, onFetchStateSuccess)
+   });
 }
+
 
 function ajax(url, method, payload, successCallback){
   var xhr = new XMLHttpRequest();
