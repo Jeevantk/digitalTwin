@@ -67,9 +67,8 @@ function inputForm() {
             "feedRate":document.controlParams.feedRate.value};
   var socket = io.connect('http://34.212.83.92:6001');
   console.log(controlObject);
-  socket.emit('newControl', controlObject,function(req,res){
-    ajax(endpointCloud, "GET",{}, onFetchStateSuccess);
-  });
+  socket.emit('newControl', controlObject);
+  ajax(endpointCloud, "GET",{}, onFetchStateSuccess);
   
   
 }
