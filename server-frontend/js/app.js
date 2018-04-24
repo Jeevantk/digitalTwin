@@ -49,9 +49,7 @@ function MainViewModel(data) {
   
 }
 
-var vm = new MainViewModel();
-ko.applyBindings(vm);
-vm.initLine();
+
 
 // var socket = io.connect('http://34.212.83.92:6001');
 
@@ -91,6 +89,7 @@ function onFetchStateSuccess(response){
   document.getElementById("currentState").innerHTML = stateString;
 }
 
+console.log("This is getting printed");
 ajax(endpointCloud, "GET",{}, onFetchStateSuccess);
 
 
@@ -108,7 +107,7 @@ ajax(endpointCloud, "GET",{}, onFetchStateSuccess);
 //     }
 
 //     function hideEle(elementId){
-//       document.getElementById(elementId).style.display = 'none';
+//       document.getElementById(elementId).style.display = '   ne';
 //     }
 
 //     function ajax(url, method, payload, successCallback){

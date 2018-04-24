@@ -178,6 +178,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.js"></script>
     <script type="text/javascript" src="js/app.js"></script>
+    <script>
+        var vm = new MainViewModel();
+        ko.applyBindings(vm);
+        vm.initLine();
+    </script>
     <!-- <script type="text/javascript" src="js/graph.js"></script> -->
 </body>
 
