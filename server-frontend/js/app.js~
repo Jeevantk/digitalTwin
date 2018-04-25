@@ -67,7 +67,7 @@ function inputForm() {
   console.log(controlObject);
   socket.emit('newControl', controlObject);
 
-  socket.on ('reloadFlag', function (data) {
+  socket.on ('messageSuccess', function (data) {
     ajax(endpointCloud, "GET",{}, onFetchStateSuccess)
    });
 }
