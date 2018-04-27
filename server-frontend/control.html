@@ -83,8 +83,10 @@
         <input type="button" onclick="inputForm()" value="Submit">
     </form>
 
-    <div id=currentState style="margin:30px">Oh No</div>
+    <div id=currentState style="margin:30px">Oh No, Servers Down</div>
 
+    <button type="button"  id="button1" onclick="onExperimentStart()">Start Data Collection</button>
+    <button type="button"  id="button2" onclick="onExperimentStop()">Stop Data Collection</button>
 
     <!-- <script>
         ajax(endpointCloud, "GET",{}, onFetchStateSuccess);

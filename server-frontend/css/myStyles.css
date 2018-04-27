@@ -237,7 +237,13 @@ body{
 
 .left{
     float:left;
+    margin:30px;
 }
 .inputForm{
     margin:30px;
+}
+
+#button1 , #button2 {
+    display:inline-block;
+    /**other codes**/
 }

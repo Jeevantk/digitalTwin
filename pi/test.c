@@ -1,31 +1,32 @@
 
-#include <wiringPiI2C.h>
 #include<stdio.h>
 #include<stdlib.h>
-#include <wiringPi.h>
  
 #include <time.h>
 
 int main()
 {
-    unsigned int start,stop;
-    int i;
-    start = millis();
-    printf("%6.3f",start);
-    delay(5000);
-    stop = millis();
-    printf("%6.3f",stop);
-    /*for(i=0; i<2000;i++)
+    
+
+    FILE *f = fopen("file.txt", "a");
+    if (f == NULL)
     {
-        printf("%d", (i*1)+(1^4));
+        printf("Error opening file!\n");
+        exit(1);
     }
-    printf("\n\n");
-    stop = clock();
 
-    //(double)(stop - start) / CLOCKS_PER_SEC
+    /* print some text */
+    const char *text = "Write this to the file";
+    fprintf(f, "Some text: %s\n", text);
 
-    printf("%6.3f", start);
-    printf("\n\n%6.3f", stop);
-    return 0;*/
+    /* print integers and floats */
+    int i = 1;
+    float py = 3.1415927;
+    fprintf(f, "Integer: %d, float: %f\n", i, py);
+
+    /* printing single chatacters */
+    char c = 'A';
+    fprintf(f, "A character: %c\n", c);
+
+    fclose(f);
 }
-

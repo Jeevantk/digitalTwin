@@ -6,13 +6,19 @@ function MainViewModel(data) {
   // var socket = io.connect(localhost+':8070');
   // var socket = io.connect('http://127.0.0.1:3000');
   
-  self.calculateAndDisplayMean = function(){
+  self.displayTempStatictics = function(){
     var average = arr => arr.reduce( ( p, c ) => p + c, 0 ) / arr.length;
-    var averageValue=average(self.lineChartData().datasets[0].data);
+    var averageValue=average(self.lineChartDataTemp().datasets[0].data);
     document.getElementById("tempAvg").innerHTML = "Average Tempurature = "+ averageValue;
   };
+
+  self.displayCurrentStatictics = function(){
+    var average = arr => arr.reduce( ( p, c ) => p + c, 0 ) / arr.length;
+    var averageValue=average(self.lineChartDataCurrent().datasets[0].data);
+    document.getElementById("currentAvg").innerHTML = "Average Tempurature = "+ averageValue;
+  };
   
-  self.lineChartData = ko.observable({
+  self.lineChartDataTemp = ko.observable({
     labels : ["0","1","2","3","4","5","6","7","8","9"],
     datasets : [
       {
@@ -24,14 +30,35 @@ function MainViewModel(data) {
       }
     ]
   });
+
+  self.lineChartDataCurrent = ko.observable({
+    labels : ["0","1","2","3","4","5","6","7","8","9"],
+    datasets : [
+      {
+        fillColor : "rgba(151,187,205,0.5)",
+        strokeColor : "rgba(151,187,205,1)",
+        pointColor : "rgba(151,187,205,1)",
+        pointStrokeColor : "#fff",
+        data : [27,88,13,97,44,13,79,28,12,67]
+      }
+    ]
+  });
   
   socket.on('newTemp', function (data) {
-    self.lineChartData().datasets[0].data.shift();
-    self.lineChartData().datasets[0].data.push(data);
+    self.lineChartDataTemp().datasets[0].data.shift();
+    self.lineChartDataTemp().datasets[0].data.push(data);
     
     self.initLine();
-    self.calculateAndDisplayMean();
-    //console.log(self.lineChartData().datasets[0].data);
+    self.displayTempStatictics();
+    //console.log(self.lineChartDataTemp().datasets[0].data);
+  });
+
+  socket.on('newCurrent', function (data) {
+    self.lineChartDataCurrent().datasets[0].data.shift();
+    self.lineChartDataCurrent().datasets[0].data.push(data);
+    
+    self.initLine();
+    self.displayCurrentStatictics();
   });
   
   self.initLine = function() {
@@ -43,15 +70,22 @@ function MainViewModel(data) {
       scaleStartValue : 10//Number - The scale starting value
     };
     
-    var ctx = $("#canvas").get(0).getContext("2d");
-    var myLine = new Chart(ctx).Line( vm.lineChartData(), options );
+
+
+    var ctxTemp = $("#canvasTemp").get(0).getContext("2d");
+    var myLineTemp = new Chart(ctxTemp).Line( vm.lineChartDataTemp(), options );
+
+    // var ctxCurrent = $("#canvasCurrent").get(0).getContext("2d");
+    // var myLineCurrent = new Chart(ctxCurrent).Line( vm.lineChartDataCurrent(), options );
+
+
   }
   
 }
 
 
 
-// var socket = io.connect('http://34.212.83.92:6001');
+var socket = io.connect('http://34.212.83.92:6001');
 
 // var socket = io.connect('http://localhost:6001')
 var endpointLocal="http://localhost:3330/state/get";
@@ -63,7 +97,7 @@ function inputForm() {
             "yValue":document.controlParams.yValue.value,
             "zValue":document.controlParams.zValue.value,
             "feedRate":document.controlParams.feedRate.value};
-  var socket = io.connect('http://34.212.83.92:6001');
+  // var socket = io.connect('http://34.212.83.92:6001');
   console.log(controlObject);
   socket.emit('newControl', controlObject);
 
@@ -94,6 +128,15 @@ function onFetchStateSuccess(response){
 console.log("This is getting printed");
 ajax(endpointCloud, "GET",{}, onFetchStateSuccess);
 
+function onExperimentStart(){
+  socket.emit('collectData',1);
+  console.log("Message send for starting Data Collection")
+}
+
+function onExperimentStop(){
+  socket.emit('collectData',0);
+  console.log("Message send for stoping Data collection");
+}
 
 
 
