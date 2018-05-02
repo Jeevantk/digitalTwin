@@ -100,12 +100,17 @@ function inputForm() {
   // var socket = io.connect('http://34.212.83.92:6001');
   console.log(controlObject);
   socket.emit('newControl', controlObject);
-
-  socket.on ('reloadFlag', function (data) {
-    ajax(endpointCloud, "GET",{}, onFetchStateSuccess)
-   });
+  ajax("http://34.212.83.92:3330/state/update","POST",controlObject,onUpdateComplete);
+  // socket.on ('reloadFlag', function (data) {
+  //   ajax(endpointCloud, "GET",{}, onFetchStateSuccess)
+  //  });
 }
 
+function onUpdateComplete(response){
+  var respData = JSON.parse(response);
+  var stateString="X Position = " + respData.xValue + " Y Position = "+respData.yValue+"    Z Position = "+respData.zValue;
+  document.getElementById("currentState").innerHTML = stateString;
+}
 
 function ajax(url, method, payload, successCallback){
   var xhr = new XMLHttpRequest();
@@ -126,7 +131,7 @@ function onFetchStateSuccess(response){
 }
 
 console.log("This is getting printed");
-ajax(endpointCloud, "GET",{}, onFetchStateSuccess);
+ajax(endpointLocal, "GET",{}, onFetchStateSuccess);
 
 function onExperimentStart(){
   socket.emit('collectData',1);
