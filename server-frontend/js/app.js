@@ -131,7 +131,7 @@ function onFetchStateSuccess(response){
 }
 
 console.log("This is getting printed");
-ajax(endpointLocal, "GET",{}, onFetchStateSuccess);
+ajax(endpointCloud, "GET",{}, onFetchStateSuccess);
 
 function onExperimentStart(){
   socket.emit('collectData',1);
