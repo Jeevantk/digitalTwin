@@ -17,22 +17,24 @@ canvas.width  = canvas.clientWidth;
 canvas.height = canvas.clientHeight;
 renderer.setViewport(0, 0, canvas.clientWidth, canvas.clientHeight);
 
+var controls;
+
 var scene = new THREE.Scene();
-scene.background = new THREE.Color( 0x111111 );
+scene.background = new THREE.Color( "rgb(255, 255, 255)" );
 
 var camera = new THREE.PerspectiveCamera(35, canvas.clientWidth/canvas.clientHeight, 1, 15);
 camera.position.z = 4;
-
+controls = new THREE.OrbitControls( camera );
 var loader = new THREE.STLLoader();
 var spindle = new THREE.Object3D();
-loader.load( './models/btp.stl', function ( geometry ) {
+loader.load( './models/endmill.stl', function ( geometry ) {
 
-  var material2 = new THREE.MeshPhongMaterial( { color: 0x111111, specular: 0x111111, shininess: 200 } );
-  spindle = new THREE.Mesh( geometry, material2 );
+  basicMaterial = new THREE.MeshBasicMaterial( { color: 0x555555, wireframe: false } );
+  spindle = new THREE.Mesh( geometry, basicMaterial );
 
-  spindle.position.set( 0, 0.3, 0);
-  spindle.rotation.set( 0,0 ,Math.PI / 2 ); //- Math.PI / 2
-  spindle.scale.set( 0.002, 0.002, 0.002 );
+  spindle.position.set( 0, 0.2, 0);
+  spindle.rotation.set( -Math.PI / 2 ,0 ,0); //- Math.PI / 2
+  spindle.scale.set( 0.02, 0.02, 0.02);
 
   spindle.castShadow = false;
   spindle.receiveShadow = false;
@@ -41,9 +43,9 @@ loader.load( './models/btp.stl', function ( geometry ) {
 
 } );
 
-
+// var controls = new THREE.OrbitControls( camera );
 var light = new THREE.DirectionalLight(0xffffff, 0.55);
-light.position.set(0, 0, 1);
+light.position.set(0, 0, 0);
 scene.add(light);
 
 onResize(canvas, function () {
@@ -56,7 +58,8 @@ onResize(canvas, function () {
 var render = function () {
   requestAnimationFrame( render );
   // spindle.rotation.x += 0.01;
-  spindle.rotation.y += 0.01;
+  // spindle.rotation.y += 0.01;
+  spindle.rotation.z += 0.01;
   var timer = Date.now() * 0.0005;
   renderer.render(scene, camera);
 };
