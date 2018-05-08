@@ -91,6 +91,11 @@ var socket = io.connect('http://34.212.83.92:6001');
 var endpointLocal="http://localhost:3330/state/get";
 var endpointCloud="http://34.212.83.92:3330/state/get";
 
+// function login(){
+//   console.log(document.userName);
+
+// }
+
 function inputForm() {
   
   var controlObject={"xValue":document.controlParams.xValue.value,
