@@ -8,6 +8,9 @@
 */
 int motpin=13;
 bool running = false;
+
+String inputString = ""; 
+
 void setup() {
   // initialize serial communication at 9600 bits per second:
   Serial.begin(9600);
@@ -15,9 +18,11 @@ void setup() {
   digitalWrite(motpin, LOW);
 }
 
+bool condition = false;
 // the loop routine runs over and over again forever:
 void loop() {
-  if (Serial.available() > 0)
+
+  while(Serial.available())
   {
     switch (Serial.read())
     {

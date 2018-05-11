@@ -144,8 +144,18 @@ function onExperimentStart(){
 }
 
 function onExperimentStop(){
-  socket.emit('collectData',0);
+  socket.emit('collectData',2);
   console.log("Message send for stoping Data collection");
+}
+
+function onspindleStart(){
+  socket.emit('collectData',0);
+  console.log("Message send for starting the spindle");
+}
+
+function onspindleStop(){
+  socket.emit('collectData',3);
+  console.log("Message send for stoping the spindle");
 }
 
 
