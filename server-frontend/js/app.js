@@ -6,17 +6,17 @@ function MainViewModel(data) {
   // var socket = io.connect(localhost+':8070');
   // var socket = io.connect('http://127.0.0.1:3000');
   
-  self.displayTempStatictics = function(){
-    var average = arr => arr.reduce( ( p, c ) => p + c, 0 ) / arr.length;
-    var averageValue=average(self.lineChartDataTemp().datasets[0].data);
-    document.getElementById("tempAvg").innerHTML = "Average Tempurature = "+ averageValue;
-  };
+  // self.displayTempStatictics = function(){
+  //   var average = arr => arr.reduce( ( p, c ) => p + c, 0 ) / arr.length;
+  //   var averageValue=average(self.lineChartDataTemp().datasets[0].data);
+  //   document.getElementById("tempAvg").innerHTML = "Average Tempurature = "+ averageValue;
+  // };
 
-  self.displayCurrentStatictics = function(){
-    var average = arr => arr.reduce( ( p, c ) => p + c, 0 ) / arr.length;
-    var averageValue=average(self.lineChartDataCurrent().datasets[0].data);
-    document.getElementById("currentAvg").innerHTML = "Average Tempurature = "+ averageValue;
-  };
+  // self.displayCurrentStatictics = function(){
+  //   var average = arr => arr.reduce( ( p, c ) => p + c, 0 ) / arr.length;
+  //   var averageValue=average(self.lineChartDataCurrent().datasets[0].data);
+  //   document.getElementById("currentAvg").innerHTML = "Average Tempurature = "+ averageValue;
+  // };
   
   self.lineChartDataTemp = ko.observable({
     labels : ["0","1","2","3","4","5","6","7","8","9"],
@@ -47,43 +47,49 @@ function MainViewModel(data) {
   socket.on('newTemp', function (data) {
     self.lineChartDataTemp().datasets[0].data.shift();
     self.lineChartDataTemp().datasets[0].data.push(data);
-    
-    self.initLine();
-    self.displayTempStatictics();
-    //console.log(self.lineChartDataTemp().datasets[0].data);
+    if(tabSelected==0){
+      self.initLineTemp();
+    }
   });
 
   socket.on('newCurrent', function (data) {
     self.lineChartDataCurrent().datasets[0].data.shift();
     self.lineChartDataCurrent().datasets[0].data.push(data);
-    
-    self.initLine();
-    self.displayCurrentStatictics();
+    if(tabSelected==1){
+      self.initLineCurrent();
+    }
   });
   
-  self.initLine = function() {
+  self.initLineTemp = function() {
     var options = {
       animation : false,
       scaleOverride : true,
       scaleSteps : 10,//Number - The number of steps in a hard coded scale
       scaleStepWidth : 10,//Number - The value jump in the hard coded scale       
-      scaleStartValue : 10//Number - The scale starting value
+      // scaleStartValue : 10//Number - The scale starting value
     };
-    
 
-
-    var ctxTemp = $("#canvasTemp").get(0).getContext("2d");
+    var ctxTemp = $("#canvas").get(0).getContext("2d");
     var myLineTemp = new Chart(ctxTemp).Line( vm.lineChartDataTemp(), options );
 
-    // var ctxCurrent = $("#canvasCurrent").get(0).getContext("2d");
-    // var myLineCurrent = new Chart(ctxCurrent).Line( vm.lineChartDataCurrent(), options );
+  }
 
+  self.initLineCurrent = function(){
+    var options = {
+      animation : false,
+      scaleOverride: true,
+      scaleSteps : 10,
+      scaleStepWidth: 10
+    }
+
+    var ctxCurrent = $('#canvas').get(0).getContext("2d");
+    var myLineCurrent= new Chart(ctxCurrent).Line(vm.lineChartDataCurrent(),options);
 
   }
   
 }
 
-
+var vm = new MainViewModel();
 
 var socket = io.connect('http://34.212.83.92:6001');
 
@@ -141,6 +147,16 @@ ajax(endpointCloud, "GET",{}, onFetchStateSuccess);
 function onExperimentStart(){
   socket.emit('collectData',1);
   console.log("Message send for starting Data Collection")
+}
+
+function tabSelectCurrent(){
+  vm.initLineCurrent();
+  tabSelected=1;
+}
+
+function tabSelectTemp(){
+  vm.initLineTemp();
+  tabSelected=0;
 }
 
 function onExperimentStop(){

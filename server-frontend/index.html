@@ -77,71 +77,35 @@
 
 
     <div class="tab">
-        <button class="tablinks actve" onclick="openTab(event, 'Tempurature')">Tempurature</button>
-        <button class="tablinks " onclick="openTab(event, 'Current')">Current</button>
+        <button class="tablinks actve" onclick="openTab(event, 'Tempurature');tabSelectTemp()">Tempurature</button>
+        <button class="tablinks " onclick="openTab(event, 'Current');tabSelectCurrent()">Current</button>
         <button class="tablinks" onclick="openTab(event, 'Vibration')">Vibration</button>
     </div>
 
 
+    <div class="pure-u-1 left" >
+        <div>
+            <canvas id="canvas" height="450" width="600"></canvas>
+        </div>
+            
+    </div>
+
     <!-- Tab content -->
     <div id="Tempurature" class="tabcontent">
-
-        
-    	<div class="pure-u-1 left" >
-			<div>
-				<canvas id="canvasTemp" height="450" width="600"></canvas>
-			</div>
-			
-		</div>
-        <div id="tempAvg">Average Tempurature Value</div>
-        <br></br>
-        <br></br>
-        <br></br>
-        <div id="tempMax">Maximum Tempurature</div>
-        <br></br>
-        <br></br>
-        <br></br>
-        <div id="tempMin">Minimum Tempurature </div>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
+        Showing Tempurature Statistics
         
     </div>
 
+    
     <div id="Current" class="tabcontent">
-
-        
-    	<div class="pure-u-1 left" >
-			<div>
-				<canvas id="canvasCurrent" height="450" width="600"></canvas>
-			</div>
-			
-		</div>
-        <div id="currentAvg">Average Current Value</div>
-        <br></br>
-        <br></br>
-        <br></br>
-        <div id="currentMax">Maximum Current</div>
-        <br></br>
-        <br></br>
-        <br></br>
-        <div id="currentMin">Minimum Current </div>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        
+        Showing Current Statistics 
     </div>
 
     <div id="Vibration" class="tabcontent">
-      <h3>Vibration</h3>
-      <p>Will be showing Vibration Information Graph</p>
-      <p>Average Value :</p>
-      <p>Variance : </p>
+        Showing Vibration Statistics
     </div>
 
-
+    
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.0/socket.io.js"></script>
@@ -197,11 +161,12 @@
     </script>
 
     <script>
+        var tabSelected=0;
         var userName="";
         var password="";
         var vm = new MainViewModel();
         ko.applyBindings(vm);
-        vm.initLine();
+        vm.initLineTemp();
     </script>
     <!-- <script type="text/javascript" src="js/graph.js"></script> -->
 </body>
