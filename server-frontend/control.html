@@ -75,7 +75,7 @@
     <br></br>
     
     <br></br>
-    <form name="controlParams" class="inputForm" class= "left" >
+    <form class="left" name="controlParams" class="inputForm" class= "left" >
         X Motion : <input type="number" name="xValue" value=0><br>
         Y Motion : <input type="number" name="yValue" value=0><br>
         Z Motion : <input type="number" name="zValue" value=0><br>
@@ -83,16 +83,19 @@
         <input type="button" onclick="inputForm()" value="Submit">
     </form>
 
-    <div id=currentState style="margin:30px">Oh No, Servers Down</div>
+    <div class="left" id=currentState style="margin:30px">Current CNC Position</div>
 
     <button type="button"  id="button1" onclick="onExperimentStart()">Start Data Collection</button>
     <button type="button"  id="button2" onclick="onExperimentStop()">Stop Data Collection</button>
     <button type="button"  id="button3" onclick="onspindleStart()">Start Spindle</button>
     <button type="button"  id="button4" onclick="onspindleStop()">Stop Spindle</button>
 
-    <!-- <script>
-        ajax(endpointCloud, "GET",{}, onFetchStateSuccess);
-    </script> -->
+    <div class="pure-u-1 right" >
+        <div>
+            <canvas id="canvasWear" height="450" width="600"></canvas>
+        </div>
+            
+    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.0/socket.io.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -131,6 +134,15 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.js"></script>
     <script type="text/javascript" src="js/app.js"></script>
+
+    <script>
+        var tabSelected=0;
+        var userName="";
+        var password="";
+        var vm = new MainViewModel();
+        ko.applyBindings(vm);
+        vm.initLineWear();
+    </script>
 
     
     <!-- <script type="text/javascript" src="js/graph.js"></script> -->

@@ -44,6 +44,19 @@ function MainViewModel(data) {
       }
     ]
   });
+
+  self.wearValues = ko.observable({
+    labels : ["0","1","2","3","4","5","6","7","8","9"],
+    datasets : [
+      {
+        fillColor : "rgba(151,187,205,0.5)",
+        strokeColor : "rgba(151,187,205,1)",
+        pointColor : "rgba(151,187,205,1)",
+        pointStrokeColor : "#fff",
+        data : [57.6,111.6,150,172,204]
+      }
+    ]
+  });
   
   socket.on('newTemp', function (data) {
     self.lineChartDataTemp().datasets[0].data.shift();
@@ -62,16 +75,29 @@ function MainViewModel(data) {
   });
 
   vibsocket.on('vibrationData',function(data){
-    console.log(data);
+    var currentArrayLength= self.wearValues().datasets[0].data.length;
+    var previousWearValue=self.wearValues().datasets[0].data[currentArrayLength-1];
+    // var labelslength = self.wearValues().
+    console.log(self.wearValues().labels)
+    console.log(data.var);
+    if(data.var>0.008)
+    {
+      self.wearValues().datasets[0].data.push(previousWearValue+4);
+      console.log(self)
+      console.log("Wear Value Appended");
+    }
+
+    self.initLineWear();
+
   });
   
   self.initLineTemp = function() {
     var options = {
       animation : false,
       scaleOverride : true,
-      scaleSteps : 10,//Number - The number of steps in a hard coded scale
-      scaleStepWidth : 10,//Number - The value jump in the hard coded scale       
-      // scaleStartValue : 10//Number - The scale starting value
+      // scaleSteps : 10,//Number - The number of steps in a hard coded scale
+      // scaleStepWidth : 10,//Number - The value jump in the hard coded scale       
+      // // scaleStartValue : 10//Number - The scale starting value
     };
 
     var ctxTemp = $("#canvas").get(0).getContext("2d");
@@ -90,6 +116,22 @@ function MainViewModel(data) {
     var ctxCurrent = $('#canvas').get(0).getContext("2d");
     var myLineCurrent= new Chart(ctxCurrent).Line(vm.lineChartDataCurrent(),options);
 
+    
+
+  }
+
+  self.initLineWear = function(){
+    var options = {
+      animation : false,
+      scaleOverride: false,
+      scaleSteps : 10,
+      scaleStepWidth: 10
+    }
+
+    var ctxWear = $('#canvasWear').get(0).getContext("2d");
+    var myLineWear = new Chart(ctxWear).Line(vm.wearValues(),options);
+
+  
   }
   
 }
