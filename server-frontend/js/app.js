@@ -3,6 +3,7 @@ function MainViewModel(data) {
   var serverIp = 'http://34.212.83.92';
   var localIp  = 'localhost';
   var socket = io.connect('http://34.212.83.92:6001');
+  var vibsocket = io.connect('http://34.212.83.92:4000');
   // var socket = io.connect(localhost+':8070');
   // var socket = io.connect('http://127.0.0.1:3000');
   
@@ -59,6 +60,10 @@ function MainViewModel(data) {
       self.initLineCurrent();
     }
   });
+
+  vibsocket.on('vibrationData',function(data){
+    console.log(data);
+  });
   
   self.initLineTemp = function() {
     var options = {
@@ -93,6 +98,8 @@ var vm = new MainViewModel();
 
 var socket = io.connect('http://34.212.83.92:6001');
 
+
+
 // var socket = io.connect('http://localhost:6001')
 var endpointLocal="http://localhost:3330/state/get";
 var endpointCloud="http://34.212.83.92:3330/state/get";
@@ -122,7 +129,10 @@ function onUpdateComplete(response){
   var stateString="X Position = " + respData.xValue + " Y Position = "+respData.yValue+"    Z Position = "+respData.zValue;
   document.getElementById("currentState").innerHTML = stateString;
 }
-
+function videoForm(){
+  var youtube = document.getElementById("videoSpace");
+  youtube.style.display = "none";
+}
 function ajax(url, method, payload, successCallback){
   var xhr = new XMLHttpRequest();
   xhr.open(method, url, true);
@@ -172,6 +182,13 @@ function onspindleStart(){
 function onspindleStop(){
   socket.emit('collectData',3);
   console.log("Message send for stoping the spindle");
+}
+
+function videoForm(){
+  var youtube = document.getElementById("videoSpace");
+  document.getElementById("videoFrame").src = "https://www.youtube.com/watch?v=XR_ub5eL9n0";
+  youtube.style.display = "block";
+  console.log(document.getElementById("videoFrame").src);
 }
 
 

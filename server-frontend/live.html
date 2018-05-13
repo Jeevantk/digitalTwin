@@ -69,43 +69,21 @@
             </div>
         </div>
     </div>
-
-    <div>
-        <iframe src="./test4.html" style="float:right;width:350px;height:350px;"></iframe>
-    </div>
-
-
-
-    <div class="tab">
-        <button class="tablinks actve" onclick="openTab(event, 'Tempurature');tabSelectTemp()">Tempurature</button>
-        <button class="tablinks " onclick="openTab(event, 'Current');tabSelectCurrent()">Current</button>
-        <button class="tablinks" onclick="openTab(event, 'Vibration')">Vibration</button>
-    </div>
-
-
-    <div class="pure-u-1 left" >
-        <div>
-            <canvas id="canvas" height="450" width="600"></canvas>
-        </div>
-            
-    </div>
-
-    <!-- Tab content -->
-    <div id="Tempurature" class="tabcontent">
-        Showing Tempurature Statistics
-        
-    </div>
-
     
-    <div id="Current" class="tabcontent">
-        Showing Current Statistics 
-    </div>
+    <h1> Live Feed </h1>
 
-    <div id="Vibration" class="tabcontent">
-        Showing Vibration Statistics
-    </div>
-
+    <div id="livestream"><iframe width="560" height="315" src="qIf3-JIEEXQ.html" frameborder="0" allowfullscreen=""></iframe></div>
+    <br>
+    <br>
     
+    
+    <iframe name="votal" style="display:none;" src="saved_resource(4).html"></iframe>
+    <form action="http://tkbala.esy.es/IoTCNC/html/livestream.php" method="POST" target="votal">
+    <textarea name="lstream" rows="1" cols="50"></textarea>
+    
+            <input type="submit" name="submit" value="Update Youtube Livestream Link" onclick="updateVid()">
+    </form>
+    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.0/socket.io.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -143,7 +121,7 @@
             });
 
             var youtube = document.getElementById("videoSpace");
-            youtube.style.display = "none";
+            // youtube.style.display = "none";
         });
 
         document.getElementsByClassName('tablinks')[0].click();
@@ -166,11 +144,7 @@
         var tabSelected=0;
         var userName="";
         var password="";
-        var vm = new MainViewModel();
-        ko.applyBindings(vm);
-        vm.initLineTemp();
     </script>
-    <!-- <script type="text/javascript" src="js/graph.js"></script> -->
 
     
 </body>
