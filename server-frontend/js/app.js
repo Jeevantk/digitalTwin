@@ -161,11 +161,8 @@ function MainViewModel(data) {
   socket.on('newCurrent', function (data) {
 
     dataCurrent.datasets[0].data.shift();
-<<<<<<< HEAD
     dataCurrent.datasets[0].data.push(data);
-=======
-    dataCurrent.datasets[0].data.push(data.cvalue);
->>>>>>> 4ab50821318d9569b6463dfa63fef4d640ec6d0a
+    console.log(data);
     if(tabSelected==1){
       self.initLineCurrent();
     }
