@@ -1,155 +1,252 @@
+var warningTemp =  40;
+var shutDownTemp = 45;
+var warningCurrent = 50;
+var shutDownCurrent = 60;
+var warningWear = 280;
+var shutdownWear = 300;
+
+var toolSelected=1;
+
+var dataWear1 = {
+  labels: [ "1", "2", "3", "4", "5","6","7","8","9","10","11"],
+  datasets: [
+      {
+          label: "Tool Wear in Microns",
+          fillColor : "rgba(151,187,205,0.5)",
+          strokeColor : "rgba(151,187,205,1)",
+          pointColor : "rgba(151,187,205,1)",
+          pointStrokeColor: "#fff",
+          pointHighlightFill: "#fff",
+          pointHighlightStroke: "rgba(220,220,220,1)",
+          data : [0,57.6,111.6,150,172,204]
+      },
+  ]
+};
+
+var dataWear2 = {
+  labels: [ "1", "2", "3", "4", "5","6","7","8","9","10","11"],
+  datasets: [
+      {
+          label: "Tool Wear in Microns",
+          fillColor : "rgba(151,187,205,0.5)",
+          strokeColor : "rgba(151,187,205,1)",
+          pointColor : "rgba(151,187,205,1)",
+          pointStrokeColor: "#fff",
+          pointHighlightFill: "#fff",
+          pointHighlightStroke: "rgba(220,220,220,1)",
+          data : [0,57.6,100,132]
+      },
+  ]
+};
+
+var dataWear3 = {
+  labels: [ "1", "2", "3", "4", "5","6","7","8","9","10","11"],
+  datasets: [
+      {
+          label: "Tool Wear in Microns",
+          fillColor : "rgba(151,187,205,0.5)",
+          strokeColor : "rgba(151,187,205,1)",
+          pointColor : "rgba(151,187,205,1)",
+          pointStrokeColor: "#fff",
+          pointHighlightFill: "#fff",
+          pointHighlightStroke: "rgba(220,220,220,1)",
+          data : [0,30,88,121]
+      },
+  ]
+};
+
+var dataWear4 = {
+labels: [ "1", "2", "3", "4", "5","6","7","8","9","10","11"],
+datasets: [
+    {
+        label: "Tool Wear in Microns",
+        fillColor : "rgba(151,187,205,0.5)",
+        strokeColor : "rgba(151,187,205,1)",
+        pointColor : "rgba(151,187,205,1)",
+        pointStrokeColor: "#fff",
+        pointHighlightFill: "#fff",
+        pointHighlightStroke: "rgba(220,220,220,1)",
+        data : [0,70,120,180]
+    },
+]
+};
+
+var defaultWear= dataWear1;
+
+var socket = io.connect('http://34.212.83.92:6001');
+var vibsocket = io.connect('http://34.212.83.92:4000');
+
 function MainViewModel(data) {
   var self = this;
   var serverIp = 'http://34.212.83.92';
   var localIp  = 'localhost';
-  var socket = io.connect('http://34.212.83.92:6001');
-  var vibsocket = io.connect('http://34.212.83.92:4000');
-  // var socket = io.connect(localhost+':8070');
-  // var socket = io.connect('http://127.0.0.1:3000');
-  
-  // self.displayTempStatictics = function(){
-  //   var average = arr => arr.reduce( ( p, c ) => p + c, 0 ) / arr.length;
-  //   var averageValue=average(self.lineChartDataTemp().datasets[0].data);
-  //   document.getElementById("tempAvg").innerHTML = "Average Tempurature = "+ averageValue;
-  // };
 
-  // self.displayCurrentStatictics = function(){
-  //   var average = arr => arr.reduce( ( p, c ) => p + c, 0 ) / arr.length;
-  //   var averageValue=average(self.lineChartDataCurrent().datasets[0].data);
-  //   document.getElementById("currentAvg").innerHTML = "Average Tempurature = "+ averageValue;
-  // };
-  
-  self.lineChartDataTemp = ko.observable({
-    labels : ["0","1","2","3","4","5","6","7","8","9"],
-    datasets : [
-      {
-        fillColor : "rgba(151,187,205,0.5)",
-        strokeColor : "rgba(151,187,205,1)",
-        pointColor : "rgba(151,187,205,1)",
-        pointStrokeColor : "#fff",
-        data : [65,59,90,81,56,55,40,28,76,40]
+  var fillTextWarning ="";
+  var fillTextShutdown = "";
+  Chart.types.Line.extend({
+      name: "LineAlt",
+      draw: function () {
+          Chart.types.Line.prototype.draw.apply(this, arguments);
+          
+          var ctx = this.chart.ctx;
+          ctx.save();
+          // text alignment and color
+          ctx.textAlign = "center";
+          ctx.textBaseline = "bottom";
+          ctx.fillStyle = this.options.scaleFontColor;
+          // position
+          var x = this.scale.xScalePaddingLeft * 0.4;
+          var y = this.chart.height / 2;
+          // change origin
+          ctx.translate(x, y)
+          // rotate text
+          ctx.fillText("Time", 274, 202);
+          ctx.fillText(fillTextWarning,400,-175);
+          ctx.fillText(fillTextShutdown,400,-150);
+          ctx.rotate(-90 * Math.PI / 180);""
+          ctx.fillText(this.datasets[0].label, 0, 0);
+          
+          ctx.beginPath();
+          ctx.restore();
       }
-    ]
   });
 
-  self.lineChartDataCurrent = ko.observable({
-    labels : ["0","1","2","3","4","5","6","7","8","9"],
-    datasets : [
-      {
-        fillColor : "rgba(151,187,205,0.5)",
-        strokeColor : "rgba(151,187,205,1)",
-        pointColor : "rgba(151,187,205,1)",
-        pointStrokeColor : "#fff",
-        data : [27,88,13,97,44,13,79,28,12,67]
-      }
-    ]
-  });
+  var dataTemp = {
+      labels: [ "1", "2", "3", "4", "5","6","7","8","9","10","11"],
+      datasets: [
+          {
+              label: "Tempurature (C)",
+              fillColor : "rgba(151,187,205,0.5)",
+              strokeColor : "rgba(151,187,205,1)",
+              pointColor : "rgba(151,187,205,1)",
+              pointStrokeColor: "#fff",
+              pointHighlightFill: "#fff",
+              pointHighlightStroke: "rgba(220,220,220,1)",
+              data : [26,27,27.3,28.1,29.4,30.1,30.6,34.2,36.2,38.4,36,34]
+          },
+      ]
+  };
 
-  self.wearValues = ko.observable({
-    labels : ["0","1","2","3","4","5","6","7","8","9"],
-    datasets : [
-      {
-        fillColor : "rgba(151,187,205,0.5)",
-        strokeColor : "rgba(151,187,205,1)",
-        pointColor : "rgba(151,187,205,1)",
-        pointStrokeColor : "#fff",
-        data : [57.6,111.6,150,172,204]
-      }
-    ]
-  });
+  var dataCurrent = {
+      labels: [ "1", "2", "3", "4", "5","6","7","8","9","10","11"],
+      datasets: [
+          {
+              label: "Spindle Drive Current (A)",
+              fillColor : "rgba(151,187,205,0.5)",
+              strokeColor : "rgba(151,187,205,1)",
+              pointColor : "rgba(151,187,205,1)",
+              pointStrokeColor: "#fff",
+              pointHighlightFill: "#fff",
+              pointHighlightStroke: "rgba(220,220,220,1)",
+              data : [27,88,13,97,44,13,79,28,12,67]
+          },
+      ]
+  };
   
   socket.on('newTemp', function (data) {
-    self.lineChartDataTemp().datasets[0].data.shift();
-    self.lineChartDataTemp().datasets[0].data.push(data);
+    dataTemp.datasets[0].data.shift();
+    dataTemp.datasets[0].data.push(data);
     if(tabSelected==0){
       self.initLineTemp();
+    }
+    if(data>warningTemp&&data<shutDownTemp){
+      excecuteWarning("Tempurature Exceeded "+warningTemp);
+    }
+    if(data>=shutDownTemp){
+      executeShutdown("Tempurature Exceeded "+shutDownTemp);
     }
   });
 
   socket.on('newCurrent', function (data) {
-    self.lineChartDataCurrent().datasets[0].data.shift();
-    self.lineChartDataCurrent().datasets[0].data.push(data);
+    dataCurrent.datasets[0].data.shift();
+    dataCurrent.datasets[0].data.push(data.value);
     if(tabSelected==1){
       self.initLineCurrent();
+    }
+    if(data.value>warningCurrent && data.value<shutDownCurrent){
+      excecuteWarning("Current Exceeded "+warningCurrent);
+    }
+    if(data.value>=shutDownCurrent){
+      executeShutdown("Current Exceeded "+shutDownCurrent);
     }
   });
 
   vibsocket.on('vibrationData',function(data){
-    var currentArrayLength= self.wearValues().datasets[0].data.length;
-    var previousWearValue=self.wearValues().datasets[0].data[currentArrayLength-1];
+    var currentArrayLength= defaultWear.datasets[0].data.length;
+    var previousWearValue=defaultWear.datasets[0].data[currentArrayLength-1];
     // var labelslength = self.wearValues().
-    console.log(self.wearValues().labels)
+    console.log(defaultWear.labels)
     console.log(data.var);
+    var labelLength = defaultWear.labels.length;
+    var currentWear=previousWearValue+4;
     if(data.var>0.008)
     {
-      self.wearValues().datasets[0].data.push(previousWearValue+4);
+      defaultWear.labels.push(labelLength+1);
+      defaultWear.datasets[0].data.push(currentWear);
+      switch(toolSelected){
+        case 1: dataWear1 = defaultWear;
+                break;
+        case 2: dataWear2 = defaultWear;
+                break;
+        case 3: dataWear3 = defaultWear;
+                break;
+        case 4: dataWear4 = defaultWear;
+                break;
+      }
       console.log(self)
       console.log("Wear Value Appended");
     }
 
     self.initLineWear();
 
+    if(currentWear>warningWear&&currentWear<shutdownWear){
+      excecuteWarning("Wear Exceeded "+warningWear);
+    }
+    if(currentWear>=shutdownWear){
+      executeShutdown("Wear Exceeded "+shutdownWear);
+    }
+
   });
   
   self.initLineTemp = function() {
-    var options = {
-      animation : false,
-      scaleOverride : true,
-      // scaleSteps : 10,//Number - The number of steps in a hard coded scale
-      // scaleStepWidth : 10,//Number - The value jump in the hard coded scale       
-      // // scaleStartValue : 10//Number - The scale starting value
-    };
-
-    var ctxTemp = $("#canvas").get(0).getContext("2d");
-    var myLineTemp = new Chart(ctxTemp).Line( vm.lineChartDataTemp(), options );
+    fillTextWarning ="Warning Tempurature = "+warningTemp;
+    fillTextShutdown = "ShutDown Tempurature = "+shutDownTemp;
+    var ctx = document.getElementById("canvas").getContext("2d");
+        var myLineChart = new Chart(ctx).LineAlt(dataTemp, {
+            // make enough space on the right side of the graph
+            scaleLabel: "          <%=value%>"
+        });
 
   }
 
-  self.initLineCurrent = function(){
-    var options = {
-      animation : false,
-      scaleOverride: true,
-      scaleSteps : 10,
-      scaleStepWidth: 10
-    }
-
-    var ctxCurrent = $('#canvas').get(0).getContext("2d");
-    var myLineCurrent= new Chart(ctxCurrent).Line(vm.lineChartDataCurrent(),options);
-
-    
+  self.initLineCurrent = function() {
+    fillTextWarning ="Warning Current Consumptiom = "+warningCurrent;
+    fillTextShutdown = "ShutDown Current Consumption = "+shutDownCurrent;
+    var ctx = document.getElementById("canvas").getContext("2d");
+        var myLineChart = new Chart(ctx).LineAlt(dataCurrent, {
+            // make enough space on the right side of the graph
+            scaleLabel: "          <%=value%>"
+        });
 
   }
 
-  self.initLineWear = function(){
-    var options = {
-      animation : false,
-      scaleOverride: false,
-      scaleSteps : 10,
-      scaleStepWidth: 10
-    }
+  self.initLineWear = function() {
+    fillTextWarning ="Warning Wear = 280 Microns";
+    fillTextShutdown = "ShutDown Wear = 300 Microns";
+    var ctx = document.getElementById("canvasWear").getContext("2d");
+        var myLineChart = new Chart(ctx).LineAlt(defaultWear, {
+            // make enough space on the right side of the graph
+            scaleLabel: "          <%=value%>"
+        });
 
-    var ctxWear = $('#canvasWear').get(0).getContext("2d");
-    var myLineWear = new Chart(ctxWear).Line(vm.wearValues(),options);
-
-  
   }
-  
 }
 
 var vm = new MainViewModel();
 
-var socket = io.connect('http://34.212.83.92:6001');
-
-
-
-// var socket = io.connect('http://localhost:6001')
 var endpointLocal="http://localhost:3330/state/get";
 var endpointCloud="http://34.212.83.92:3330/state/get";
 
-// function login(){
-//   console.log(document.userName);
-
-// }
 
 function inputForm() {
   
@@ -157,13 +254,9 @@ function inputForm() {
             "yValue":document.controlParams.yValue.value,
             "zValue":document.controlParams.zValue.value,
             "feedRate":document.controlParams.feedRate.value};
-  // var socket = io.connect('http://34.212.83.92:6001');
   console.log(controlObject);
   socket.emit('newControl', controlObject);
   ajax("http://34.212.83.92:3330/state/update","POST",controlObject,onUpdateComplete);
-  // socket.on ('reloadFlag', function (data) {
-  //   ajax(endpointCloud, "GET",{}, onFetchStateSuccess)
-  //  });
 }
 
 function onUpdateComplete(response){
@@ -233,123 +326,35 @@ function videoForm(){
   console.log(document.getElementById("videoFrame").src);
 }
 
+function excecuteWarning(message){
+  alert("Warning "+message);
+}
 
+function executeShutdown(message){
+  alert("Shutting down the Spindle : "+message);
+  onspindleStop();
+}
 
-
-// (function() {
-
-//     var serverUrl = "/",
-//         members = [],
-//         channel,tempuratureChartRef;
-
-//     function showEle(elementId){
-//       document.getElementById(elementId).style.display = 'flex';
-//     }
-
-//     function hideEle(elementId){
-//       document.getElementById(elementId).style.display = '   ne';
-//     }
-
-//     function ajax(url, method, payload, successCallback){
-//       var xhr = new XMLHttpRequest();
-//       xhr.open(method, url, true);
-//       xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-//       xhr.onreadystatechange = function () {
-//         if (xhr.readyState != 4 || xhr.status != 200) return;
-//         successCallback(xhr.responseText);
-//       };
-//       xhr.send(JSON.stringify(payload));
-//     }
-
-
-//   // Specifi Code For Rendering the tempurature Data
-
-//   //   var option = {
-//   //   showLines: true
-//   // };
-
-//   // var ctx = document.getElementById("tempuratureChart").getContext("2d");
-
-//   // tempuratureChartRef = new Chart(ctx, {
-//   //   type: "line",
-//   //   data: tempuratureData,
-//   //   options: options
-//   // });
-//   // var myLineChart = Chart.Line(canvas,{
-//   //   data:tempuratureData,
-//   //   options:option
-//   // });
-
-//   // var previousLength=0;
-//   // function renderTempChart(tempuratureData){
-//   //   var currentLength=tempuratureData.labels.length;
-
-//   // }
-
-
-//    function renderTempChart(tempuratureData) {
-//       var ctx = document.getElementById("tempuratureChart").getContext("2d");
-//       var options={};
-//       tempuratureChartRef = new Chart(ctx, {
-//         type: "line",
-//         data: tempuratureData,
-//         options: options
-//       });
-
-//       console.log(tempuratureData.labels.length);
-//   }
-
-//   var chartConfig = {
-//     labels: [],
-//     datasets: [
-//       {
-//           label: "Tempurature Readings",
-//           fill: false,
-//           lineTension: 0.1,
-//           backgroundColor: "rgba(75,192,192,0.4)",
-//           borderColor: "rgba(75,192,192,1)",
-//           borderCapStyle: 'butt',
-//           borderDash: [],
-//           borderDashOffset: 0.0,
-//           borderJoinStyle: 'miter',
-//           pointBorderColor: "rgba(75,192,192,1)",
-//           pointBackgroundColor: "#fff",
-//           pointBorderWidth: 1,
-//           pointHoverRadius: 5,
-//           pointHoverBackgroundColor: "rgba(75,192,192,1)",
-//           pointHoverBorderColor: "rgba(220,220,220,1)",
-//           pointHoverBorderWidth: 2,
-//           pointRadius: 1,
-//           pointHitRadius: 10,
-//           data: [],
-//           spanGaps: false,
-//       }
-//     ]
-//   };
-
-
-  
-//   ajax("http://localhost:3000/tempurature/get", "GET",{}, onFetchTempSuccess);
-
-
-//   // function continouslyUpdate(){
-//   //   ajax("http://localhost:3000/tempurature/get", "GET",{}, onFetchTempSuccess);
-//   //   setTimeout(continouslyUpdate,5000);
-
-//   // };
-
-//   // continouslyUpdate();
-  
-
-//   function onFetchTempSuccess(response){
-//     hideEle("loader");
-//     var respData = JSON.parse(response);
-//     chartConfig.labels = respData.dataPoints.map(dataPoint => dataPoint.id);
-//     chartConfig.datasets[0].data = respData.dataPoints.map(dataPoint => dataPoint.temperature);
-//     renderTempChart(chartConfig)
-//   }
-
-
-
-
-// })();
+function toolSelect(response){
+  console.log(response);
+  if(response=="1"){
+    toolSelected=1;
+    defaultWear=dataWear1;
+    vm.initLineWear();
+  }
+  if(response=="2"){
+    toolSelected=2;
+    defaultWear=dataWear2;
+    vm.initLineWear();
+  }
+  if(response=="3"){
+    toolSelected=3;
+    defaultWear=dataWear3;
+    vm.initLineWear();
+  }
+  if(response=="4"){
+    toolSelected=4;
+    defaultWear=dataWear4;
+    vm.initLineWear();
+  }
+}

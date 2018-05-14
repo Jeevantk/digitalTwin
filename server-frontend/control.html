@@ -83,6 +83,15 @@
         <input type="button" onclick="inputForm()" value="Submit">
     </form>
 
+    <div class = "select" > Select Tool No
+        <select name="" onchange="toolSelect(this.value)"> 
+            <option id="tool1" >1</option>
+            <option id="tool2" >2</option>
+            <option id="tool3" >3</option>
+            <option id="tool4" >4</option>
+        </select>
+    </div>
+
     <div class="left" id=currentState style="margin:30px">Current CNC Position</div>
 
     <button type="button"  id="button1" onclick="onExperimentStart()">Start Data Collection</button>
