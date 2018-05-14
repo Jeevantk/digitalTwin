@@ -73,8 +73,8 @@ datasets: [
 
 var defaultWear= dataWear1;
 
-var socket = io.connect('http://34.212.83.92:6001');
-var vibsocket = io.connect('http://34.212.83.92:4000');
+var socket = io.connect('http://54.190.43.20:6001');
+var vibsocket = io.connect('http://54.190.43.20:4000');
 
 function MainViewModel(data) {
   var self = this;
