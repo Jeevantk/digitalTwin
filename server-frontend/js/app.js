@@ -78,7 +78,7 @@ var vibsocket = io.connect('http://34.212.83.92:4000');
 
 function MainViewModel(data) {
   var self = this;
-  var serverIp = 'http://34.212.83.92';
+  var serverIp = 'http://54.190.43.20';
   var localIp  = 'localhost';
 
   var fillTextWarning ="";
@@ -245,7 +245,7 @@ function MainViewModel(data) {
 var vm = new MainViewModel();
 
 var endpointLocal="http://localhost:3330/state/get";
-var endpointCloud="http://34.212.83.92:3330/state/get";
+var endpointCloud="http://54.190.43.20:3330/state/get";
 
 
 function inputForm() {
@@ -256,7 +256,7 @@ function inputForm() {
             "feedRate":document.controlParams.feedRate.value};
   console.log(controlObject);
   socket.emit('newControl', controlObject);
-  ajax("http://34.212.83.92:3330/state/update","POST",controlObject,onUpdateComplete);
+  ajax("http://54.190.43.20:3330/state/update","POST",controlObject,onUpdateComplete);
 }
 
 function onUpdateComplete(response){
