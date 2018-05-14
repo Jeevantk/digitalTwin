@@ -6,16 +6,16 @@
 
   This example code is in the public domain.
 */
-int motpin=13;
-bool running = false;
-
-String inputString = ""; 
+int motpin=3;
+bool running = false; 
 
 void setup() {
   // initialize serial communication at 9600 bits per second:
   Serial.begin(9600);
   pinMode(motpin, OUTPUT);
+  pinMode(13, OUTPUT);
   digitalWrite(motpin, LOW);
+  digitalWrite(13, HIGH);
 }
 
 bool condition = false;
