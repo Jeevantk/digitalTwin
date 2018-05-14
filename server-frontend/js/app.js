@@ -131,7 +131,7 @@ function MainViewModel(data) {
       labels: [ "1", "2", "3", "4", "5","6","7","8","9","10","11"],
       datasets: [
           {
-              label: "Spindle Drive Current (A)",
+              label: "Current Sensor Output",
               fillColor : "rgba(151,187,205,0.5)",
               strokeColor : "rgba(151,187,205,1)",
               pointColor : "rgba(151,187,205,1)",
@@ -143,7 +143,7 @@ function MainViewModel(data) {
       ]
   };
   
-  socket.on('newTemp', function (data) {
+  socket.on('`Temp', function (data) {
     dataTemp.datasets[0].data.shift();
     dataTemp.datasets[0].data.push(data);
     if(tabSelected==0){
@@ -158,8 +158,9 @@ function MainViewModel(data) {
   });
 
   socket.on('newCurrent', function (data) {
+
     dataCurrent.datasets[0].data.shift();
-    dataCurrent.datasets[0].data.push(data.value);
+    dataCurrent.datasets[0].data.push(data.cvalue);
     if(tabSelected==1){
       self.initLineCurrent();
     }
