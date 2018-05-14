@@ -146,6 +146,7 @@ function MainViewModel(data) {
   socket.on('newTemp', function (data) {
     dataTemp.datasets[0].data.shift();
     dataTemp.datasets[0].data.push(data);
+    console.log(data);
     if(tabSelected==0){
       self.initLineTemp();
     }
@@ -159,14 +160,14 @@ function MainViewModel(data) {
 
   socket.on('newCurrent', function (data) {
     dataCurrent.datasets[0].data.shift();
-    dataCurrent.datasets[0].data.push(data.value);
+    dataCurrent.datasets[0].data.push(data);
     if(tabSelected==1){
       self.initLineCurrent();
     }
-    if(data.value>warningCurrent && data.value<shutDownCurrent){
+    if(data>warningCurrent && data<shutDownCurrent){
       excecuteWarning("Current Exceeded "+warningCurrent);
     }
-    if(data.value>=shutDownCurrent){
+    if(data>=shutDownCurrent){
       executeShutdown("Current Exceeded "+shutDownCurrent);
     }
   });
