@@ -28,19 +28,28 @@ A web application using Angular,HTML,Bootstrap and JS is made to act as the Oper
 
 ## Operator Interface
 git clone https://github.com/Jeevantk/digitalTwin
+
 cd digitalTwin/server-frontend
+
 npm install
+
 npm start
 
 ## Local Machine
 git clone https://github.com/Jeevantk/digitalTwin
+
 cd digitalTwin/server-local
+
 npm install 
+
 npm start
 
 ## Online Cloud Server
 git clone https://github.com/Jeevantk/digitalTwin
+
 cd digitalTwin/server-backend
+
 npm install 
+
 npm start
  
