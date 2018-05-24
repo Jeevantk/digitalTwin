@@ -80,7 +80,6 @@ function MainViewModel(data) {
   var self = this;
   var serverIp = 'http://54.190.43.20';
   var localIp  = 'localhost';
-
   var fillTextWarning ="";
   var fillTextShutdown = "";
   Chart.types.Line.extend({
@@ -143,7 +142,7 @@ function MainViewModel(data) {
       ]
   };
   
-  socket.on('`Temp', function (data) {
+  socket.on('newTemp', function (data) {
     dataTemp.datasets[0].data.shift();
     dataTemp.datasets[0].data.push(data);
     console.log(data);
